@@ -1,4 +1,7 @@
 # Changelog
+## v0.0.3
+    * Se crearon todos los métodos se acceso a datos de los modelos.
+    * Se corrigieron errores menores de los Modelos
 ## v0.0.2
      * Se crearon las siguientes clases:
      *      Falla
