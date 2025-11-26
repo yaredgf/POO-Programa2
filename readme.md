@@ -1,4 +1,6 @@
 # Changelog
+## v0.1.0
+    * Se creó el menú principal
 ## v0.0.3
     * Se crearon todos los métodos se acceso a datos de los modelos.
     * Se corrigieron errores menores de los Modelos
