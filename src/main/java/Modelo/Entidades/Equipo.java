@@ -23,7 +23,7 @@ public class Equipo implements java.io.Serializable
     private Date fechaAdquisicion;
     private Date fechaPuestaEnServicio;
     private int mesesVidaUtil;
-    private String estadoEquipo;
+    private EstadoEquipo estadoEquipo;
     private float costoInicial;
     private String especificacionesTecnicas;
     private String informacionGarantia;
@@ -49,7 +49,7 @@ public class Equipo implements java.io.Serializable
     }
 
 
-    public Equipo(int id, int idEquipoPrincipal, String descripcion, int tipoEquipo, String ubicacionFisica, String fabricante, String serie, Date fechaAdquisicion, Date fechaPuestaEnServicio, int mesesVidaUtil, String estadoEquipo, float costoInicial, String especificacionesTecnicas, String informacionGarantia, ArrayList<Fase> fasesMantenimiento)
+    public Equipo(int id, int idEquipoPrincipal, String descripcion, int tipoEquipo, String ubicacionFisica, String fabricante, String serie, Date fechaAdquisicion, Date fechaPuestaEnServicio, int mesesVidaUtil, EstadoEquipo estadoEquipo, float costoInicial, String especificacionesTecnicas, String informacionGarantia, ArrayList<Fase> fasesMantenimiento)
     {
         this.id = id;
         this.idEquipoPrincipal = idEquipoPrincipal;
@@ -159,12 +159,12 @@ public class Equipo implements java.io.Serializable
     {
         return this.mesesVidaUtil;
     }
-    public void setEstadoEquipo(String estadoEquipo)
+    public void setEstadoEquipo(EstadoEquipo estadoEquipo)
     {
         this.estadoEquipo = estadoEquipo;
     }
 
-    public String getEstadoEquipo()
+    public EstadoEquipo getEstadoEquipo()
     {
         return this.estadoEquipo;
     }
