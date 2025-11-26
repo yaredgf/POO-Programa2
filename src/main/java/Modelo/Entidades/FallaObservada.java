@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Modelo.Entidades;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author Usuario
  */
-public class FallaObservada {
+public class FallaObservada implements java.io.Serializable
+{
     private int idFalla;
     private String causa;
     private String accionesTomadas;
