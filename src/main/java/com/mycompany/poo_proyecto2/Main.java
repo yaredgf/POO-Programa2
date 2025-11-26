@@ -4,6 +4,10 @@
  */
 package com.mycompany.poo_proyecto2;
 
+import Vista.MenuPrincipal;
+
+import javax.swing.*;
+
 /**
  *
  * @author Usuario
@@ -13,7 +17,11 @@ public class Main
     public static void main(String args[])
     {
         System.out.println("Adios mundo");
-    
+        //XD
+
+        SwingUtilities.invokeLater(()->{
+            new MenuPrincipal().setVisible(true);
+        });
     
     
     }
