@@ -6,8 +6,9 @@ import java.io.*;
 public class Archivos<T> {
     /**
      * Lee un archivo binario y retorna el objeto que lea del archivo.
+     * Si no existe el archivo que se intenta leer, se dará opción de crearlo.
      * @param nombre Nombre del archivo. Si es nulo, se lanzará un dialog de error y no se hará nada.
-     * @return Null si falló la apertura del archivo o si no existe. Un Objeto si tiene éxito.
+     * @return Null si falló la apertura del archivo. Un Objeto si tiene éxito.
      */
     public T LeerArchivo(String nombre){
         try{
@@ -21,8 +22,14 @@ public class Archivos<T> {
                 fis.close();
                 return objeto;
             }else{
-                JOptionPane.showMessageDialog  (null,"Error al abrir el archivo: No existe.","Error",JOptionPane.ERROR_MESSAGE);
-                return null;
+                if(JOptionPane.showConfirmDialog(null, "El archivo de nombre \"Mant_"+nombre+".bin\" no existe, ¿Desea crearlo?", "Advertencia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                    archivo.createNewFile();
+                    return LeerArchivo(nombre);
+                }
+                else{
+                    JOptionPane.showMessageDialog  (null,"Error al escribir en el archivo: No existe.","Error",JOptionPane.ERROR_MESSAGE);
+                    return null;
+                }
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog  (null,"Error al abrir el archivo: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
@@ -48,8 +55,14 @@ public class Archivos<T> {
                 fos.close();
                 return true;
             }else{
-                JOptionPane.showMessageDialog  (null,"Error al escribir en el archivo: No existe.","Error",JOptionPane.ERROR_MESSAGE);
-                return false;
+                if(JOptionPane.showConfirmDialog(null, "El archivo de nombre \"Mant_"+nombre+".bin\" no existe, ¿Desea crearlo?", "Advertencia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                    archivo.createNewFile();
+                    return EscribirArchivo(nombre, objeto);
+                }
+                else{
+                    JOptionPane.showMessageDialog  (null,"Error al escribir en el archivo: No existe.","Error",JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog  (null,"Error al escribir en el archivo: "+e.getMessage()+"\n"+e.toString(),"Error",JOptionPane.ERROR_MESSAGE);

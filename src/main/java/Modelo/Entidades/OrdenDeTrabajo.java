@@ -21,7 +21,7 @@ public class OrdenDeTrabajo implements java.io.Serializable
     private int costoManoObra;
     private int costoEquipoMaterial;
     private String observaciones;
-    private int frecuencia;
+    private Frecuencia frecuencia;
     private int cantidadCiclos;
     private ArrayList<String> listaTareas;
     private String partes;
@@ -126,4 +126,44 @@ public class OrdenDeTrabajo implements java.io.Serializable
     {
         return this.observaciones;
     }
+    public Frecuencia getFrecuencia() {
+        return frecuencia;
+    }
+
+    public void setFrecuencia(Frecuencia frecuencia) {
+        this.frecuencia = frecuencia;
+    }
+
+    public int getCantidadCiclos() {
+        return cantidadCiclos;
+    }
+
+    public void setCantidadCiclos(int cantidadCiclos) {
+        this.cantidadCiclos = cantidadCiclos;
+    }
+
+    public ArrayList<String> getListaTareas() {
+        return listaTareas;
+    }
+
+    public void setListaTareas(ArrayList<String> listaTareas) {
+        this.listaTareas = listaTareas;
+    }
+
+    public String getPartes() {
+        return partes;
+    }
+
+    public void setPartes(String partes) {
+        this.partes = partes;
+    }
+
+    public String getPersonalEncargado() {
+        return personalEncargado;
+    }
+
+    public void setPersonalEncargado(String personalEncargado) {
+        this.personalEncargado = personalEncargado;
+    }
+
 }
