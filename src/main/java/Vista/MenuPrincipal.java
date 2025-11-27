@@ -1,5 +1,7 @@
 package Vista;
 
+import Vista.Paneles.RegistrarEquipo;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -75,7 +77,7 @@ public class MenuPrincipal extends JFrame {
         add(panelContenido, BorderLayout.CENTER);
 
         //Los eventos para cada panel
-
+        itemRegistrarEquipo.addActionListener(e -> cargarPanel(new RegistrarEquipo()));
     }
     ///
     /// Cambia el contenido del panel principal segun el item seleccionado en el menu.

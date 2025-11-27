@@ -4,9 +4,13 @@
  */
 package com.mycompany.poo_proyecto2;
 
+import Modelo.Entidades.*;
+import Modelo.Metodos.*;
+import Utilidades.Archivos;
 import Vista.MenuPrincipal;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 /**
  *

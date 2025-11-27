@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class TipoEquipoM {
-    private ArrayList<TipoEquipo> listaTiposEquipos = new ArrayList<>();
+    private ArrayList<TipoEquipo> listaTiposEquipos;
     private Archivos<ArrayList<TipoEquipo>> arch = new Archivos<>();
 
     public TipoEquipoM(){
@@ -15,6 +15,8 @@ public class TipoEquipoM {
     }
     public boolean Nuevo(TipoEquipo tipo){
         try{
+            if(listaTiposEquipos!=null)
+                tipo.setId(listaTiposEquipos.size()+1);
             listaTiposEquipos.add(tipo);
             arch.EscribirArchivo("tiposEquipos", listaTiposEquipos);
             return true;

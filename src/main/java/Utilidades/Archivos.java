@@ -24,6 +24,7 @@ public class Archivos<T> {
             }else{
                 if(JOptionPane.showConfirmDialog(null, "El archivo de nombre \"Mant_"+nombre+".bin\" no existe, ¿Desea crearlo?", "Advertencia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                     archivo.createNewFile();
+                    EscribirArchivo(nombre, null);
                     return LeerArchivo(nombre);
                 }
                 else{
