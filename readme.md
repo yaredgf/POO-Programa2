@@ -1,4 +1,7 @@
 # Changelog
+## v0.1.1
+    * Se creó RegistrarEquipo
+    * Se creó InventarioEquipos
 ## v0.1.0
     * Se creó el menú principal
 ## v0.0.3
