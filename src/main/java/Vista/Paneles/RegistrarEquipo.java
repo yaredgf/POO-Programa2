@@ -14,7 +14,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class RegistrarEquipo extends JPanel {
-    ControladorEquipo controladorEquipo;
+    private Equipo equipo;
+    private int tipoOperacion = 0;
+    private ControladorEquipo controladorEquipo;
+    private JTextField txtEquipoPrincipal;
     private JTextField txtDescripcion;
     private JComboBox<String> comboTipo;
     private JTextField txtUbicacion;
@@ -29,8 +32,32 @@ public class RegistrarEquipo extends JPanel {
     private JTextField txtGarantia;
 
     public RegistrarEquipo() {
-         controladorEquipo = new ControladorEquipo();
+        this.tipoOperacion = 0;
+        inicializarComponentes();
 
+    }
+    public RegistrarEquipo(Equipo equipo) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        this.tipoOperacion = 1;
+        inicializarComponentes();
+        this.equipo = equipo;
+        txtEquipoPrincipal.setText(String.valueOf(equipo.getIdEquipoPrincipal()));
+        txtDescripcion.setText(equipo.getDescripcion());
+        comboTipo.setSelectedIndex(equipo.getTipoEquipo());
+        txtUbicacion.setText(equipo.getUbicacionFisica());
+        txtFabricante.setText(equipo.getFabricante());
+        txtSerie.setText(equipo.getSerie());
+        txtFechaAdquisicion.setText(sdf.format(equipo.getFechaAdquisicion()));
+        txtFechaServicio.setText(sdf.format(equipo.getFechaPuestaEnServicio()));
+        txtVidaUtil.setText(String.valueOf(equipo.getMesesVidaUtil()));
+        comboEstado.setSelectedItem(equipo.getEstadoEquipo());
+        txtCostoInicial.setText(String.valueOf(equipo.getCostoInicial()));
+    }
+    private void inicializarComponentes() {
+        controladorEquipo = new ControladorEquipo();
+
+        this.equipo = new Equipo();
         setLayout(new BorderLayout());
         JLabel lblTitulo = new JLabel("Registrar Equipo", JLabel.CENTER);
         add(lblTitulo, BorderLayout.NORTH);
@@ -46,6 +73,7 @@ public class RegistrarEquipo extends JPanel {
             comboTipo.addItem(t.getDescripcion());
         }
 
+        txtEquipoPrincipal = new JTextField();
         txtUbicacion = new JTextField();
         txtFabricante = new JTextField();
         txtSerie = new JTextField();
@@ -57,6 +85,8 @@ public class RegistrarEquipo extends JPanel {
         txtEspecificaciones = new JTextField();
         txtGarantia = new JTextField();
 
+        txtEquipoPrincipal.setText("0");
+        formulario.add(new JLabel("Equipo principal(0 si no tiene):")); formulario.add(txtEquipoPrincipal);
         formulario.add(new JLabel("Descripción:")); formulario.add(txtDescripcion);
         formulario.add(new JLabel("Tipo de equipo:")); formulario.add(comboTipo);
         formulario.add(new JLabel("Ubicación física:")); formulario.add(txtUbicacion);
@@ -79,20 +109,24 @@ public class RegistrarEquipo extends JPanel {
         panelBotones.add(btnLimpiar);
         add(panelBotones, BorderLayout.SOUTH);
 
-        btnGuardar.addActionListener(e -> guardarEquipo());
+        btnGuardar.addActionListener(e -> {
+            if (this.tipoOperacion == 1) editarEquipo();
+            else guardarEquipo();
+        });
         btnLimpiar.addActionListener(e -> limpiarFormulario());
-
-
-
-
     }
     private void guardarEquipo() {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date fechaAdq = sdf.parse(txtFechaAdquisicion.getText());
-            Date fechaServ = sdf.parse(txtFechaServicio.getText());
 
-            Equipo equipo = new Equipo();
+            Date fechaAdq = sdf.parse(txtFechaAdquisicion.getText());
+            Date fechaServ;
+            if(txtFechaServicio.getText().isEmpty())
+                fechaServ = null;
+            else
+                fechaServ = sdf.parse(txtFechaServicio.getText());
+
+            equipo.setIdEquipoPrincipal(txtEquipoPrincipal.getText().isEmpty() ? 0 : Integer.parseInt(txtEquipoPrincipal.getText()));
             equipo.setDescripcion(txtDescripcion.getText());
             equipo.setTipoEquipo(comboTipo.getSelectedIndex()); // índice como tipo
             equipo.setUbicacionFisica(txtUbicacion.getText());
@@ -107,20 +141,61 @@ public class RegistrarEquipo extends JPanel {
             equipo.setInformacionGarantia(txtGarantia.getText());
             equipo.setFasesMantenimiento(new ArrayList<>()); // inicial vacío
 
-            JOptionPane.showMessageDialog(this,
-                    "Equipo registrado:\n" + equipo.getDescripcion(),
-                    "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
 
-            controladorEquipo.RegistrarEquipo(equipo);
+            if(controladorEquipo.Registrar(equipo)){
+                JOptionPane.showMessageDialog(this,
+                        "Equipo registrado:\n" + equipo.getDescripcion(),
+                        "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+            }
 
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(this, "Error en formato de fecha", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Error en campos numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error en campos numéricos. Por favor introduzca números donde corresponde.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    private void editarEquipo() {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
+
+            Date fechaAdq = sdf.parse(txtFechaAdquisicion.getText());
+            Date fechaServ;
+            if(txtFechaServicio.getText().isEmpty())
+                fechaServ = null;
+            else
+                fechaServ = sdf.parse(txtFechaServicio.getText());
+
+            equipo.setIdEquipoPrincipal(txtEquipoPrincipal.getText().isEmpty() ? 0 : Integer.parseInt(txtEquipoPrincipal.getText()));
+            equipo.setDescripcion(txtDescripcion.getText());
+            equipo.setTipoEquipo(comboTipo.getSelectedIndex()); // índice como tipo
+            equipo.setUbicacionFisica(txtUbicacion.getText());
+            equipo.setFabricante(txtFabricante.getText());
+            equipo.setSerie(txtSerie.getText());
+            equipo.setFechaAdquisicion(fechaAdq);
+            equipo.setFechaPuestaEnServicio(fechaServ);
+            equipo.setMesesVidaUtil(Integer.parseInt(txtVidaUtil.getText()));
+            equipo.setEstadoEquipo((EstadoEquipo) comboEstado.getSelectedItem());
+            equipo.setCostoInicial(Float.parseFloat(txtCostoInicial.getText()));
+            equipo.setEspecificacionesTecnicas(txtEspecificaciones.getText());
+            equipo.setInformacionGarantia(txtGarantia.getText());
+            equipo.setFasesMantenimiento(new ArrayList<>()); // inicial vacío
+
+
+            if(controladorEquipo.Editar(equipo)){
+                JOptionPane.showMessageDialog(this,
+                        "Equipo editado:\n" + equipo.getDescripcion(),
+                        "Edición exitosa", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Error en formato de fecha", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Error en campos numéricos. Por favor introduzca números donde corresponde.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     private void limpiarFormulario() {
+        txtEquipoPrincipal.setText("");
         txtDescripcion.setText("");
         comboTipo.setSelectedIndex(0);
         txtUbicacion.setText("");

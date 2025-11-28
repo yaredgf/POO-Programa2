@@ -10,6 +10,7 @@ import Utilidades.Archivos;
 import Vista.MenuPrincipal;
 
 import javax.swing.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -26,7 +27,5 @@ public class Main
         SwingUtilities.invokeLater(()->{
             new MenuPrincipal().setVisible(true);
         });
-    
-    
     }
 }

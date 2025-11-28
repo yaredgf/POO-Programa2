@@ -1,5 +1,7 @@
 package Vista;
 
+import Controlador.ControladorMenuP;
+import Vista.Paneles.InventarioEquipos;
 import Vista.Paneles.RegistrarEquipo;
 
 import javax.swing.*;
@@ -76,18 +78,11 @@ public class MenuPrincipal extends JFrame {
         panelContenido = new JPanel(new BorderLayout());
         add(panelContenido, BorderLayout.CENTER);
 
+        ControladorMenuP controlador = new ControladorMenuP(panelContenido);
         //Los eventos para cada panel
-        itemRegistrarEquipo.addActionListener(e -> cargarPanel(new RegistrarEquipo()));
+        itemRegistrarEquipo.addActionListener(e -> controlador.cargarPanel(new RegistrarEquipo()));
+        itemInventario.addActionListener(e -> controlador.cargarPanel(new InventarioEquipos()));
     }
-    ///
-    /// Cambia el contenido del panel principal segun el item seleccionado en el menu.
-    /// @param panel Panel a mostrar.
-    ///
-    private void cargarPanel(JPanel panel){
-        panelContenido.removeAll();
-        panelContenido.add(panel, BorderLayout.CENTER);
-        panelContenido.revalidate();
-        panelContenido.repaint();
-    }
+
 
 }

@@ -63,4 +63,8 @@ public class EquipoM {
     public ArrayList<Equipo> Buscar(){
         return listaEquipos;
     }
+
+    public int GetUltimoId(){
+        return listaEquipos.get(listaEquipos.size()-1).getId();
+    }
 }

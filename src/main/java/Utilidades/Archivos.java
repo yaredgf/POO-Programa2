@@ -4,6 +4,14 @@ import javax.swing.*;
 import java.io.*;
 
 public class Archivos<T> {
+    private <T> T CrearInstancia(Class<T> clase){
+        try{
+            return clase.getDeclaredConstructor().newInstance();
+        }catch(Exception e){
+            System.out.println("Error al crear instancia de la clase, llame a Dios: "+e.getMessage());
+            return null;
+        }
+    }
     /**
      * Lee un archivo binario y retorna el objeto que lea del archivo.
      * Si no existe el archivo que se intenta leer, se dará opción de crearlo.
@@ -24,7 +32,6 @@ public class Archivos<T> {
             }else{
                 if(JOptionPane.showConfirmDialog(null, "El archivo de nombre \"Mant_"+nombre+".bin\" no existe, ¿Desea crearlo?", "Advertencia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                     archivo.createNewFile();
-                    EscribirArchivo(nombre, null);
                     return LeerArchivo(nombre);
                 }
                 else{

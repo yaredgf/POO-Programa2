@@ -204,4 +204,9 @@ public class Equipo implements java.io.Serializable
     {
         return this.fasesMantenimiento;
     }
+
+    public String toString()
+    {
+        return this.id+" "+this.descripcion;
+    }
 }
