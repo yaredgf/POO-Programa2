@@ -1,5 +1,10 @@
 # Changelog
-<<<<<<< HEAD
+## v0.1.3
+    * Se creó la vista "Fallas"
+    * Se creó el crud de Fallas (Faltan ciertos bugfixes)
+    * Se modificó el menu principal. Ahora Falla -> Fallas y Tareas. 
+     Cada mantenimiento se hace por separado. 
+     Ahora el mantenimineto de Fallas se hace en la vista de lista, y se agrega con un botón adicional.
 ## v0.1.2
     * Se corrigio Orden de trabajo
     * Se corrigio Fase
