@@ -20,12 +20,10 @@ public class OrdenDeTrabajo implements java.io.Serializable
     private float horasTrabajo;
     private int costoManoObra;
     private int costoEquipoMaterial;
-    private String observaciones;
-    private Frecuencia frecuencia;
-    private int cantidadCiclos;
-    private ArrayList<String> listaTareas;
-    private String partes;
-    private String personalEncargado;
+    private String observacionesIniciales;
+    private String observacionesFinales;
+    private Date fechaCancelacion;
+    private String motivoCancelacion;
 
     public OrdenDeTrabajo()
     {
@@ -36,11 +34,14 @@ public class OrdenDeTrabajo implements java.io.Serializable
         this.horasTrabajo = 0;
         this.costoManoObra = 0;
         this.costoEquipoMaterial = 0;
-        this.observaciones = null;
+        this.observacionesIniciales = null;
+        this.observacionesFinales = null;
+        this.fechaCancelacion = null;
+        this.motivoCancelacion = null;
     }
 
 
-    public OrdenDeTrabajo(int id, int idEquipo, Date fechaInicio, Date fechaFinalizacion, float horasTrabajo, int costoManoObra, int costoEquipoMaterial, String observaciones)
+    public OrdenDeTrabajo(int id, int idEquipo, Date fechaInicio, Date fechaFinalizacion, float horasTrabajo, int costoManoObra, int costoEquipoMaterial, String observacionesIniciales, String observacionesFinales, Date fechaCancelacion, String motivoCancelacion)
     {
         this.id = id;
         this.idEquipo = idEquipo;
@@ -49,7 +50,10 @@ public class OrdenDeTrabajo implements java.io.Serializable
         this.horasTrabajo = horasTrabajo;
         this.costoManoObra = costoManoObra;
         this.costoEquipoMaterial = costoEquipoMaterial;
-        this.observaciones = observaciones;
+        this.observacionesIniciales = observacionesIniciales;
+        this.observacionesFinales = observacionesFinales;
+        this.fechaCancelacion = fechaCancelacion;
+        this.motivoCancelacion = motivoCancelacion;
     }
 
 
@@ -78,7 +82,6 @@ public class OrdenDeTrabajo implements java.io.Serializable
 
     public Date getFechaInicio()
     {
-           
         return this.fechaInicio;
     }
     public void setFechaFinalizacion(Date fechaFinalizacion)
@@ -117,53 +120,41 @@ public class OrdenDeTrabajo implements java.io.Serializable
     {
         return this.costoEquipoMaterial;
     }
-    public void setObservaciones(String observaciones)
+    public void setObservacionesIniciales(String observacionesIniciales)
     {
-        this.observaciones = observaciones;
+        this.observacionesIniciales = observacionesIniciales;
     }
 
-    public String getObservaciones()
+    public String getObservacionesIniciales()
     {
-        return this.observaciones;
+            return this.observacionesIniciales;
     }
-    public Frecuencia getFrecuencia() {
-        return frecuencia;
-    }
-
-    public void setFrecuencia(Frecuencia frecuencia) {
-        this.frecuencia = frecuencia;
+    public void setObservacionesFinales(String observacionesFinales)
+    {
+        this.observacionesFinales = observacionesFinales;
     }
 
-    public int getCantidadCiclos() {
-        return cantidadCiclos;
+    public String getObservacionesFinales()
+    {
+            return this.observacionesFinales;
+    }
+    public void setFechaCancelacion(Date fechaCancelacion)
+    {
+        this.fechaCancelacion = fechaCancelacion;
     }
 
-    public void setCantidadCiclos(int cantidadCiclos) {
-        this.cantidadCiclos = cantidadCiclos;
+    public Date getFechaCancelacion()
+    {
+        return this.fechaCancelacion;
+    }
+    public void setMotivoCancelacion(String motivoCancelacion)
+    {
+        this.motivoCancelacion = motivoCancelacion;
     }
 
-    public ArrayList<String> getListaTareas() {
-        return listaTareas;
-    }
-
-    public void setListaTareas(ArrayList<String> listaTareas) {
-        this.listaTareas = listaTareas;
-    }
-
-    public String getPartes() {
-        return partes;
-    }
-
-    public void setPartes(String partes) {
-        this.partes = partes;
-    }
-
-    public String getPersonalEncargado() {
-        return personalEncargado;
-    }
-
-    public void setPersonalEncargado(String personalEncargado) {
-        this.personalEncargado = personalEncargado;
+    public String getMotivoCancelacion()
+    {
+        return this.motivoCancelacion;
     }
 
 }
