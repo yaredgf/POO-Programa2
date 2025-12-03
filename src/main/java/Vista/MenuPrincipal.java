@@ -1,33 +1,36 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package Vista;
 
 import Controlador.ControladorMenuP;
 import Vista.Paneles.InventarioEquipos;
+import Vista.Paneles.ListaFallas;
 import Vista.Paneles.RegistrarEquipo;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 public class MenuPrincipal extends JFrame {
-    ///
-    /// Este panel es el que va a cambiar con el contenido segun corresponda.
-    ///
     private JPanel panelContenido;
-    public MenuPrincipal(){
-        setTitle("Mantenimiento de Equipos");
-        setSize(1000, 600);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
 
-        //Barra de Menu
+    public MenuPrincipal() {
+        this.setTitle("Mantenimiento de Equipos");
+        this.setSize(1000, 600);
+        this.setDefaultCloseOperation(3);
+        this.setLocationRelativeTo((Component)null);
         JMenuBar menuBar = new JMenuBar();
-        //Submenu equipos
         JMenu menuEquipos = new JMenu("Equipos");
         JMenuItem itemRegistrarEquipo = new JMenuItem("Registrar");
         JMenuItem itemInventario = new JMenuItem("Inventario");
         menuEquipos.add(itemRegistrarEquipo);
         menuEquipos.add(itemInventario);
-
-        //submenu mantenimiento preventivo
         JMenu menuMantenimientoPrev = new JMenu("Mantenimiento Preventivo");
         JMenuItem itemProgramas = new JMenuItem("Programas");
         JMenuItem itemListaTareas = new JMenuItem("Lista de tareas");
@@ -35,54 +38,38 @@ public class MenuPrincipal extends JFrame {
         menuMantenimientoPrev.add(itemProgramas);
         menuMantenimientoPrev.add(itemListaTareas);
         menuMantenimientoPrev.add(itemOrdenesTrabajo);
-
-        //submenu mantenimiento correctivo
         JMenu menuMantenimientoCorr = new JMenu("Mantenimiento Correctivo");
         JMenuItem itemCorrOrdenes = new JMenuItem("Órdenes de trabajo");
         menuMantenimientoCorr.add(itemCorrOrdenes);
-
-        //Submenu fallas
-        JMenu menuFallas = new JMenu("Fallas");
-        JMenuItem itemRegistrarFalla = new JMenuItem("Registrar");
-        JMenuItem itemListaFalla = new JMenuItem("Lista de fallas");
-        menuFallas.add(itemRegistrarFalla);
-        menuFallas.add(itemListaFalla);
-
-        //Submenu reportes
+        JMenu menuFallasYTareas = new JMenu("Fallas y Tareas");
+        JMenuItem itemAdminFalla = new JMenuItem("Administrar Fallas");
+        JMenuItem itemAdminTareas = new JMenuItem("Administrar Tareas");
+        menuFallasYTareas.add(itemAdminFalla);
+        menuFallasYTareas.add(itemAdminTareas);
         JMenu menuReportes = new JMenu("Reportes");
         JMenuItem itemReporteInventario = new JMenuItem("Inventario");
         JMenuItem itemReporteOperaciones = new JMenuItem("Operaciones de mantenimiento");
-        JMenuItem itemReporteOrdenes = new JMenuItem("Órdenes de trabajo");
-        JMenuItem itemReporteGraficos = new JMenuItem("Graficos de análisis");
+        new JMenuItem("Órdenes de trabajo");
+        new JMenuItem("Graficos de análisis");
         menuReportes.add(itemReporteInventario);
         menuReportes.add(itemReporteOperaciones);
-
-        //Submenu ayuda
         JMenu menuAyuda = new JMenu("Ayuda");
         JMenuItem itemAcercaDe = new JMenuItem("Acerca de");
         JMenuItem itemManual = new JMenuItem("Manual de usuario");
         menuAyuda.add(itemAcercaDe);
         menuAyuda.add(itemManual);
-
-        //Agregar submenus a la barra de menu
         menuBar.add(menuEquipos);
         menuBar.add(menuMantenimientoPrev);
         menuBar.add(menuMantenimientoCorr);
-        menuBar.add(menuFallas);
+        menuBar.add(menuFallasYTareas);
         menuBar.add(menuReportes);
         menuBar.add(menuAyuda);
-
-        //Setear la barra de menu a la ventana
-        setJMenuBar(menuBar);
-
-        panelContenido = new JPanel(new BorderLayout());
-        add(panelContenido, BorderLayout.CENTER);
-
-        ControladorMenuP controlador = new ControladorMenuP(panelContenido);
-        //Los eventos para cada panel
-        itemRegistrarEquipo.addActionListener(e -> controlador.cargarPanel(new RegistrarEquipo()));
-        itemInventario.addActionListener(e -> controlador.cargarPanel(new InventarioEquipos()));
+        this.setJMenuBar(menuBar);
+        this.panelContenido = new JPanel(new BorderLayout());
+        this.add(this.panelContenido, "Center");
+        ControladorMenuP controlador = new ControladorMenuP(this.panelContenido);
+        itemRegistrarEquipo.addActionListener((e) -> controlador.cargarPanel(new RegistrarEquipo()));
+        itemInventario.addActionListener((e) -> controlador.cargarPanel(new InventarioEquipos()));
+        itemAdminFalla.addActionListener((e) -> controlador.cargarPanel(new ListaFallas()));
     }
-
-
 }

@@ -1,46 +1,35 @@
 package Utilidades;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 
 public class Archivos<T> {
-    private <T> T CrearInstancia(Class<T> clase){
-        try{
-            return clase.getDeclaredConstructor().newInstance();
-        }catch(Exception e){
-            System.out.println("Error al crear instancia de la clase, llame a Dios: "+e.getMessage());
-            return null;
-        }
-    }
     /**
      * Lee un archivo binario y retorna el objeto que lea del archivo.
      * Si no existe el archivo que se intenta leer, se dará opción de crearlo.
      * @param nombre Nombre del archivo. Si es nulo, se lanzará un dialog de error y no se hará nada.
      * @return Null si falló la apertura del archivo. Un Objeto si tiene éxito.
      */
-    public T LeerArchivo(String nombre){
-        try{
-            File archivo = new File("datos/Mant_"+nombre+".bin"); //Añade la extensión y estandarización para mayor compatibilidad.
-            if(archivo.exists()){ //Si existe, haga las operaciones correspondientes
+    public T LeerArchivo(String nombre) {
+        try {
+            File archivo = new File("datos/Mant_" + nombre + ".bin");
+            if (archivo.exists()) {
                 FileInputStream fis = new FileInputStream(archivo);
                 ObjectInputStream ois = new ObjectInputStream(fis);
-                T objeto = (T)ois.readObject(); //Lee el objeto. Hace el cast directamente al objeto T.
-                //Cierra los streams
+                T objeto = (T)ois.readObject();
                 ois.close();
                 fis.close();
                 return objeto;
-            }else{
-                if(JOptionPane.showConfirmDialog(null, "El archivo de nombre \"Mant_"+nombre+".bin\" no existe, ¿Desea crearlo?", "Advertencia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                    archivo.createNewFile();
-                    return LeerArchivo(nombre);
-                }
-                else{
-                    JOptionPane.showMessageDialog  (null,"Error al escribir en el archivo: No existe.","Error",JOptionPane.ERROR_MESSAGE);
-                    return null;
-                }
+            } else if (JOptionPane.showConfirmDialog((Component)null, "El archivo de nombre \"Mant_" + nombre + ".bin\" no existe, ¿Desea crearlo?", "Advertencia", 0) == 0) {
+                archivo.createNewFile();
+                return (T)this.LeerArchivo(nombre);
+            } else {
+                JOptionPane.showMessageDialog((Component)null, "Error al escribir en el archivo: No existe.", "Error", 0);
+                return null;
             }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog  (null,"Error al abrir el archivo: "+e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog((Component)null, "Error al abrir el archivo: " + e.getMessage(), "Error", 0);
             return null;
         }
     }
@@ -51,29 +40,25 @@ public class Archivos<T> {
      * @param objeto Objeto que se escribirá en el archivo binario.
      * @return Booleano que determina si hubo éxito o no.
      */
-    public boolean EscribirArchivo(String nombre, T objeto){
-        try{
-            File archivo = new File("datos/Mant_"+nombre+".bin"); //Añade la extensión y estandarización para mayor compatibilidad.
-            if(archivo.exists()){ //Si existe, haga las operaciones correspondientes
+    public boolean EscribirArchivo(String nombre, T objeto) {
+        try {
+            File archivo = new File("datos/Mant_" + nombre + ".bin");
+            if (archivo.exists()) {
                 FileOutputStream fos = new FileOutputStream(archivo);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(objeto); //Escribe en el archivo el objeto.
-                //Cierra los streams
+                oos.writeObject(objeto);
                 oos.close();
                 fos.close();
                 return true;
-            }else{
-                if(JOptionPane.showConfirmDialog(null, "El archivo de nombre \"Mant_"+nombre+".bin\" no existe, ¿Desea crearlo?", "Advertencia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                    archivo.createNewFile();
-                    return EscribirArchivo(nombre, objeto);
-                }
-                else{
-                    JOptionPane.showMessageDialog  (null,"Error al escribir en el archivo: No existe.","Error",JOptionPane.ERROR_MESSAGE);
-                    return false;
-                }
+            } else if (JOptionPane.showConfirmDialog((Component)null, "El archivo de nombre \"Mant_" + nombre + ".bin\" no existe, ¿Desea crearlo?", "Advertencia", 0) == 0) {
+                archivo.createNewFile();
+                return this.EscribirArchivo(nombre, objeto);
+            } else {
+                JOptionPane.showMessageDialog((Component)null, "Error al escribir en el archivo: No existe.", "Error", 0);
+                return false;
             }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog  (null,"Error al escribir en el archivo: "+e.getMessage()+"\n"+e.toString(),"Error",JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog((Component)null, "Error al escribir en el archivo: " + e.getMessage() + "\n" + e.toString(), "Error", 0);
             return false;
         }
     }

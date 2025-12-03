@@ -1,4 +1,5 @@
 # Changelog
+<<<<<<< HEAD
 ## v0.1.2
     * Se corrigio Orden de trabajo
     * Se corrigio Fase
@@ -6,6 +7,8 @@
 ## v0.1.1
     * Se creó RegistrarEquipo
     * Se creó InventarioEquipos
+=======
+>>>>>>> parent of 5f16b41 (Add changelog entry for version 0.1.1)
 ## v0.1.0
     * Se creó el menú principal
 ## v0.0.3
