@@ -16,7 +16,7 @@ public class Fase implements java.io.Serializable
     private String tipoFrecuencia;
     private Frecuencia frecuencia;
     private int cantidadCiclos;
-    private ArrayList<String> listaTareas;
+    private ArrayList<Integer> listaTareas;
     private String partes;
     private String equipoParaMantenimiento;
     private String personalEncargado;
@@ -36,7 +36,7 @@ public class Fase implements java.io.Serializable
     }
 
 
-    public Fase(int id, String tipoFrecuencia, Frecuencia frecuencia, int cantidadCiclos, ArrayList<String> listaTareas, String partes, String equipoParaMantenimiento, String personalEncargado, float horasEstimadas)
+    public Fase(int id, String tipoFrecuencia, Frecuencia frecuencia, int cantidadCiclos, ArrayList<Integer> listaTareas, String partes, String equipoParaMantenimiento, String personalEncargado, float horasEstimadas)
     {
         this.id = id;
         this.tipoFrecuencia = tipoFrecuencia;
@@ -86,12 +86,12 @@ public class Fase implements java.io.Serializable
     {
         return this.cantidadCiclos;
     }
-    public void setListaTareas(ArrayList<String> listaTareas)
+    public void setListaTareas(ArrayList<Integer> listaTareas)
     {
         this.listaTareas = listaTareas;
     }
 
-    public ArrayList<String> getListaTareas()
+    public ArrayList<Integer> getListaTareas()
     {
         return this.listaTareas;
     }

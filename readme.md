@@ -1,4 +1,8 @@
 # Changelog
+## v0.1.2
+    * Se corrigio Orden de trabajo
+    * Se corrigio Fase
+    * Se agregó la clase tarea
 ## v0.1.1
     * Se creó RegistrarEquipo
     * Se creó InventarioEquipos
