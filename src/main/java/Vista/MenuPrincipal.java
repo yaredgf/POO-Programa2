@@ -8,6 +8,7 @@ package Vista;
 import Controlador.ControladorMenuP;
 import Vista.Paneles.InventarioEquipos;
 import Vista.Paneles.ListaFallas;
+import Vista.Paneles.OrdenesCorrectivo;
 import Vista.Paneles.RegistrarEquipo;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -71,5 +72,6 @@ public class MenuPrincipal extends JFrame {
         itemRegistrarEquipo.addActionListener((e) -> controlador.cargarPanel(new RegistrarEquipo()));
         itemInventario.addActionListener((e) -> controlador.cargarPanel(new InventarioEquipos()));
         itemAdminFalla.addActionListener((e) -> controlador.cargarPanel(new ListaFallas()));
+        itemCorrOrdenes.addActionListener(e -> controlador.cargarPanel(new OrdenesCorrectivo()));
     }
 }

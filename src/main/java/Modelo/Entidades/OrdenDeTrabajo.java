@@ -157,4 +157,8 @@ public class OrdenDeTrabajo implements java.io.Serializable
         return this.motivoCancelacion;
     }
 
+    public String toString()
+    {
+        return "Orden "+this.id;
+    }
 }
