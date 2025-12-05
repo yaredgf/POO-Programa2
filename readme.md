@@ -1,4 +1,8 @@
 # Changelog
+## v0.1.5
+    * Se creó la vista AgregarOrdenCorrectiva
+    * FALTA UI: Editar, Cerrar
+    * FALTA BACK: Todo
 ## v0.1.4
     * Se creó la vista "OrdenesCorrectivo"
     * Se creó el controlador "ControladorOrdenesCorrectivo"
