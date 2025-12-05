@@ -1,4 +1,10 @@
 # Changelog
+## v0.1.4
+    * Se creó la vista "OrdenesCorrectivo"
+    * Se creó el controlador "ControladorOrdenesCorrectivo"
+    * Se diseñó parte de la interfaz para el CRUD de Ordenes COrrectivas
+    * FALTA: Agregar, Editar, Cerrar (En UI)
+    * FALTA: Todo (En controlador)
 ## v0.1.3
     * Se creó la vista "Fallas"
     * Se creó el crud de Fallas (Faltan ciertos bugfixes)
@@ -12,8 +18,6 @@
 ## v0.1.1
     * Se creó RegistrarEquipo
     * Se creó InventarioEquipos
-=======
->>>>>>> parent of 5f16b41 (Add changelog entry for version 0.1.1)
 ## v0.1.0
     * Se creó el menú principal
 ## v0.0.3
