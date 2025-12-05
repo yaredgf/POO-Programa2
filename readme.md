@@ -1,4 +1,7 @@
 # Changelog
+## v0.1.5
+    * Se corrigió el modelo de OrdenDeTrabajo, OrdenDeTrabajoCorrectivo y OrdenDeTrabajoPreventivo
+    * Se agregó el panel "OrdenesPreventivo"
 ## v0.1.4
     * Se creó la vista "OrdenesCorrectivo"
     * Se creó el controlador "ControladorOrdenesCorrectivo"

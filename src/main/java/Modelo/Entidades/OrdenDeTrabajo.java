@@ -24,6 +24,8 @@ public class OrdenDeTrabajo implements java.io.Serializable
     private String observacionesFinales;
     private Date fechaCancelacion;
     private String motivoCancelacion;
+    private Date fechaCreacion;
+    private Date fechaEjecucion;
 
     public OrdenDeTrabajo()
     {
@@ -38,10 +40,12 @@ public class OrdenDeTrabajo implements java.io.Serializable
         this.observacionesFinales = null;
         this.fechaCancelacion = null;
         this.motivoCancelacion = null;
+        this.fechaCreacion = null;
+        this.fechaEjecucion = null;
     }
 
 
-    public OrdenDeTrabajo(int id, int idEquipo, Date fechaInicio, Date fechaFinalizacion, float horasTrabajo, int costoManoObra, int costoEquipoMaterial, String observacionesIniciales, String observacionesFinales, Date fechaCancelacion, String motivoCancelacion)
+    public OrdenDeTrabajo(int id, int idEquipo, Date fechaInicio, Date fechaFinalizacion, float horasTrabajo, int costoManoObra, int costoEquipoMaterial, String observacionesIniciales, String observacionesFinales, Date fechaCancelacion, String motivoCancelacion, Date fechaCreacion, Date fechaEjecucion )
     {
         this.id = id;
         this.idEquipo = idEquipo;
@@ -54,6 +58,8 @@ public class OrdenDeTrabajo implements java.io.Serializable
         this.observacionesFinales = observacionesFinales;
         this.fechaCancelacion = fechaCancelacion;
         this.motivoCancelacion = motivoCancelacion;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaEjecucion = fechaEjecucion;
     }
 
 
@@ -155,6 +161,25 @@ public class OrdenDeTrabajo implements java.io.Serializable
     public String getMotivoCancelacion()
     {
         return this.motivoCancelacion;
+    }
+    
+    public void setFechaCreacion(Date fechaCreacion)
+    {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public Date getFechaCreacion()
+    {
+        return this.fechaCreacion;
+    }
+    public void setFechaEjecucion(Date fechaEjecucion)
+    {
+        this.fechaEjecucion = fechaEjecucion;
+    }
+
+    public Date getFechaEjecucion()
+    {
+        return this.fechaEjecucion;
     }
 
     public String toString()

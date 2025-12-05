@@ -23,6 +23,10 @@ public class Main
     {
         System.out.println("Adios mundo");
         //XD
+        
+        //Archivos<ArrayList<OrdenDeTrabajoCorrectivo>> archivo = new Archivos<ArrayList<OrdenDeTrabajoCorrectivo>>() ;
+        //archivo.EscribirArchivo("ordenesDeTrabajo", (new ArrayList<OrdenDeTrabajoCorrectivo>()) );
+        
 
         SwingUtilities.invokeLater(()->{
             new MenuPrincipal().setVisible(true);

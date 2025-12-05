@@ -10,6 +10,7 @@ import Vista.Paneles.InventarioEquipos;
 import Vista.Paneles.ListaFallas;
 import Vista.Paneles.OrdenesCorrectivo;
 import Vista.Paneles.RegistrarEquipo;
+import Vista.Paneles.OrdenesPreventivo;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import javax.swing.JFrame;
@@ -33,12 +34,8 @@ public class MenuPrincipal extends JFrame {
         menuEquipos.add(itemRegistrarEquipo);
         menuEquipos.add(itemInventario);
         JMenu menuMantenimientoPrev = new JMenu("Mantenimiento Preventivo");
-        JMenuItem itemProgramas = new JMenuItem("Programas");
-        JMenuItem itemListaTareas = new JMenuItem("Lista de tareas");
-        JMenuItem itemOrdenesTrabajo = new JMenuItem("Órdenes de trabajo");
-        menuMantenimientoPrev.add(itemProgramas);
-        menuMantenimientoPrev.add(itemListaTareas);
-        menuMantenimientoPrev.add(itemOrdenesTrabajo);
+        JMenuItem itemPrevOrdenes = new JMenuItem("Órdenes de trabajo");
+        menuMantenimientoPrev.add(itemPrevOrdenes);
         JMenu menuMantenimientoCorr = new JMenu("Mantenimiento Correctivo");
         JMenuItem itemCorrOrdenes = new JMenuItem("Órdenes de trabajo");
         menuMantenimientoCorr.add(itemCorrOrdenes);
@@ -73,5 +70,7 @@ public class MenuPrincipal extends JFrame {
         itemInventario.addActionListener((e) -> controlador.cargarPanel(new InventarioEquipos()));
         itemAdminFalla.addActionListener((e) -> controlador.cargarPanel(new ListaFallas()));
         itemCorrOrdenes.addActionListener(e -> controlador.cargarPanel(new OrdenesCorrectivo()));
+        
+        itemPrevOrdenes.addActionListener(e -> controlador.cargarPanel(new OrdenesPreventivo()));
     }
 }

@@ -12,46 +12,23 @@ import java.util.Date;
  */
 public class OrdenDeTrabajoCorrectivo extends OrdenDeTrabajo implements java.io.Serializable
 {
-    private Date fechaCreacion;
-    private Date fechaEjecucion;
     private ArrayList<FallaObservada> fallasReportadas;
     private ArrayList<FallaObservada> fallasEncontradas;
 
     public OrdenDeTrabajoCorrectivo()
     {
-        this.fechaCreacion = null;
-        this.fechaEjecucion = null;
         this.fallasReportadas = null;
         this.fallasEncontradas = null;
     }
 
 
-    public OrdenDeTrabajoCorrectivo(Date fechaCreacion, Date fechaEjecucion, ArrayList<FallaObservada> fallasReportadas, ArrayList<FallaObservada> fallasEncontradas)
+    public OrdenDeTrabajoCorrectivo(ArrayList<FallaObservada> fallasReportadas, ArrayList<FallaObservada> fallasEncontradas)
     {
-        this.fechaCreacion = fechaCreacion;
-        this.fechaEjecucion = fechaEjecucion;
         this.fallasReportadas = fallasReportadas;
         this.fallasEncontradas = fallasEncontradas;
     }
     
-    public void setFechaCreacion(Date fechaCreacion)
-    {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public Date getFechaCreacion()
-    {
-        return this.fechaCreacion;
-    }
-    public void setFechaEjecucion(Date fechaEjecucion)
-    {
-        this.fechaEjecucion = fechaEjecucion;
-    }
-
-    public Date getFechaEjecucion()
-    {
-        return this.fechaEjecucion;
-    }
+    
     public void setFallasReportadas(ArrayList<FallaObservada> fallasReportadas)
     {
     
