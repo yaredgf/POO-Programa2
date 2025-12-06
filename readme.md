@@ -1,4 +1,6 @@
 # Changelog
+## v0.1.6
+    * Se trabajó en la interfaz del menú de Ordenes Preventivo
 ## v0.1.5
     * Se creó la vista AgregarOrdenCorrectiva
     * FALTA UI: Editar, Cerrar
