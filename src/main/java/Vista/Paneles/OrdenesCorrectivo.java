@@ -1,10 +1,13 @@
 package Vista.Paneles;
 
 import Controlador.ControladorOrdenesCorrectivo;
+import Modelo.Entidades.Equipo;
 import Modelo.Entidades.OrdenDeTrabajoCorrectivo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class OrdenesCorrectivo extends JPanel {
@@ -62,11 +65,17 @@ public class OrdenesCorrectivo extends JPanel {
         this.listaUIModelo.addAll(lista);
         listaUI = new JList<>(this.listaUIModelo);
         listaUI.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listaUI.addListSelectionListener(e ->{
+            Detalles(listaUIModelo.get(listaUI.getSelectedIndex()));
+        });
+
         panelLista = new JPanel();
         panelLista.setLayout(new BorderLayout());
         panelLista.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panelLista.add(new JScrollPane(listaUI), BorderLayout.CENTER);
         panelContenido.add(panelLista);
+
+
         panelDetalles = new JPanel();
         panelDetalles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panelDetalles.setBackground(new Color(255, 255, 255));
@@ -92,6 +101,7 @@ public class OrdenesCorrectivo extends JPanel {
         btnCerrar.addActionListener(e -> {
             Cerrar(((OrdenDeTrabajoCorrectivo)this.listaUIModelo.get(this.listaUI.getSelectedIndex())));
         });
+
         btnCancelar = new JButton("Cancelar Orden");
         btnCancelar.addActionListener(e -> {
             Cancelar((OrdenDeTrabajoCorrectivo)this.listaUIModelo.get(this.listaUI.getSelectedIndex()));
@@ -128,6 +138,92 @@ public class OrdenesCorrectivo extends JPanel {
 
     private void Editar(OrdenDeTrabajoCorrectivo orden){
 
+    }
+
+    private void Detalles(OrdenDeTrabajoCorrectivo orden){
+        panelDetalles.removeAll();
+        panelDetalles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panelDetalles.setBackground(new Color(255, 255, 255));
+        panelDetalles.setLayout(new BoxLayout(panelDetalles, BoxLayout.Y_AXIS));
+
+        JPanel bloque =  new JPanel();
+        JLabel titulo = new JLabel(orden.toString());
+        titulo.setFont(new Font("Arial", Font.BOLD, 20));
+        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        bloque.add(titulo);
+        bloque.setAlignmentX(0);
+        panelDetalles.add(bloque);
+
+        JLabel subtitulo = new JLabel();
+        subtitulo.setFont(new Font("Arial", Font.BOLD, 17));
+        JTextArea textoPlano = new JTextArea();
+        textoPlano.setFont(new Font("Arial", Font.PLAIN, 17));
+
+        Equipo equipo = new Equipo();
+        bloque = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        equipo = controlador.GetEquipo(orden.getIdEquipo());
+        subtitulo = new JLabel("Equipo: ");
+        subtitulo.setFont(new Font("Arial", Font.BOLD, 17));
+        textoPlano = new JTextArea(equipo.toString());
+        textoPlano.setEditable(false);
+        textoPlano.setLineWrap(false);
+        textoPlano.setWrapStyleWord(true);
+        textoPlano.setOpaque(false);
+        textoPlano.setBorder(null);
+        textoPlano.setFont(new Font("Arial", Font.PLAIN, 17));
+        bloque.add(subtitulo);
+        bloque.add(textoPlano);
+        bloque.setAlignmentX(0);
+        panelDetalles.add(bloque);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        bloque = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        subtitulo = new JLabel("Fecha de realización: ");
+        subtitulo.setFont(new Font("Arial", Font.BOLD, 17));
+        textoPlano = new JTextArea(sdf.format(orden.getFechaEjecucion()));
+        textoPlano.setEditable(false);
+        textoPlano.setLineWrap(true);
+        textoPlano.setWrapStyleWord(true);
+        textoPlano.setOpaque(false);
+        textoPlano.setBorder(null);
+        textoPlano.setFont(new Font("Arial", Font.PLAIN, 17));
+        bloque.add(subtitulo);
+        bloque.add(textoPlano);
+        bloque.setAlignmentX(0);
+        panelDetalles.add(bloque);
+
+        bloque = new JPanel();
+        bloque.setLayout(new BoxLayout(bloque, BoxLayout.Y_AXIS));
+        bloque.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        subtitulo = new JLabel("Observaciones iniciales:");
+        subtitulo.setFont(new Font("Arial", Font.BOLD, 17));
+
+        textoPlano = new JTextArea(orden.getObservacionesIniciales());
+        textoPlano.setFont(new Font("Arial", Font.PLAIN, 17));
+        textoPlano.setEditable(false);
+        textoPlano.setLineWrap(true);
+        textoPlano.setWrapStyleWord(true);
+        textoPlano.setOpaque(false);
+        textoPlano.setBorder(null);
+
+        bloque.setAlignmentX(0);
+        subtitulo.setAlignmentX(0);
+        textoPlano.setAlignmentX(0);
+
+        textoPlano.setMaximumSize(new Dimension(Integer.MAX_VALUE, textoPlano.getPreferredSize().height));
+
+        JScrollPane scroll = new JScrollPane(textoPlano);
+        scroll.setOpaque(false);
+        scroll.setBorder(null);
+
+        bloque.add(subtitulo);
+        bloque.add(scroll);
+
+
+        panelDetalles.add(bloque);
+
+        panelDetalles.revalidate();
+        panelDetalles.repaint();
     }
 
     private void Cancelar(OrdenDeTrabajoCorrectivo orden){

@@ -1,7 +1,11 @@
 package Controlador;
 
+import Modelo.Entidades.Equipo;
+import Modelo.Entidades.Falla;
 import Modelo.Entidades.OrdenDeTrabajo;
 import Modelo.Entidades.OrdenDeTrabajoCorrectivo;
+import Modelo.Metodos.EquipoM;
+import Modelo.Metodos.FallaM;
 import Modelo.Metodos.OrdenDeTrabajoM;
 
 import java.util.ArrayList;
@@ -31,5 +35,24 @@ public class ControladorOrdenesCorrectivo {
     }
     public void Cancelar(int id, String motivo){
         //TODO
+    }
+    public Equipo GetEquipo(int id){
+        EquipoM m = new EquipoM();
+        return m.Buscar(id);
+    }
+    public ArrayList<Equipo> BuscarTodosEquipos(){
+        EquipoM m = new EquipoM();
+        return m.Buscar();
+    }
+    public ArrayList<Falla> BuscarTodasFallas(){
+        FallaM m = new FallaM();
+        return m.Buscar();
+    }
+    public void Agregar(OrdenDeTrabajoCorrectivo o){
+        o.setId(GetUltimoId()+1);
+        //TODO
+    }
+    public int GetUltimoId(){
+        return metodos.Buscar().getLast().getId();
     }
 }
