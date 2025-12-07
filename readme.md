@@ -1,4 +1,10 @@
 # Changelog
+## v0.1.7
+    * Se hizo la funcion "Crear" en el ControladorOrdenesCorrectivo
+    * Se hizo la funcion "Actualizar" en el ControladorOrdenesCorrectivo
+    * Se hizo la funcion "Iniciar" en el ControladorOrdenesCorrectivo
+    * Se hizo la funcion "Cerrar" en el ControladorOrdenesCorrectivo
+    * Se hizo la funcion "Cancelar" en el ControladorOrdenesCorrectivo
 ## v0.1.6
     * Se trabajó en la interfaz del menú de Ordenes Preventivo
 ## v0.1.5
