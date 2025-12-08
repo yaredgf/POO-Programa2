@@ -106,9 +106,13 @@ public class ControladorOrdenesCorrectivo {
     {
         otc.setFechaCreacion(new Date());
         otc.setId(GetUltimoId()+1);
+        if(otc.getFallasReportadas()==null)
+            otc.setFallasReportadas(new ArrayList<>());
+        if(otc.getFallasEncontradas()==null)
+            otc.setFallasEncontradas(new ArrayList<>());
         return metodos.Nuevo(otc);
     }
-    
+
     public boolean Actualizar(OrdenDeTrabajoCorrectivo otc)
     {
         return metodos.Editar(otc);
