@@ -46,7 +46,7 @@ public class Equipo implements java.io.Serializable
         this.costoInicial = 0;
         this.especificacionesTecnicas = null;
         this.informacionGarantia = null;
-        this.fasesMantenimiento = null;
+        this.fasesMantenimiento = new ArrayList<Fase>();
         this.mantPrevActivo = false;
     }
 

@@ -17,7 +17,7 @@ public class OrdenDeTrabajoPreventivo extends OrdenDeTrabajo implements java.io.
 
     public OrdenDeTrabajoPreventivo()
     {
-        this.fallasObservadas = null;
+        this.fallasObservadas = new ArrayList<FallaObservada>();
         this.idFase = -1;
     }
 

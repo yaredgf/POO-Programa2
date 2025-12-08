@@ -1,4 +1,12 @@
 # Changelog
+## v0.2.1.1
+    * Hotfixes para cuando las listas vienen vacías
+## v0.2.1
+    * Se creó vista "EditarOrdenCorrectiva"
+## v0.2.0
+    * Se creó el controlador de Orden Preventiva
+    * Se terminó el controlador de Orden Correctiva
+    * Se modificaron los modelos de Equipo, ambas órdenes, etc
 ## v0.1.7
     * Se hizo la funcion "Crear" en el ControladorOrdenesCorrectivo
     * Se hizo la funcion "Actualizar" en el ControladorOrdenesCorrectivo
