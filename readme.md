@@ -1,4 +1,6 @@
 # Changelog
+## v0.3.0.2
+    * Hotfix de Fases de bug que no guardaba la última fase editada.
 ## v0.3.0.1
     * Se agregó la dependencia Maven de JFreeChart
 ## v0.3.0
