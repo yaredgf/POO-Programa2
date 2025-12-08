@@ -1,4 +1,6 @@
 # Changelog
+## v.1.0.1
+    * Hotfix de bugs visuales menores.
 ## v1.0
     * Se creó el módulo de Reportes:
        * ReporteInventarioEquipos
