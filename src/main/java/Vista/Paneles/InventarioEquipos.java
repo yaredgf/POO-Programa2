@@ -33,6 +33,7 @@ public class InventarioEquipos extends JPanel {
     private JButton btnEditar;
     private JButton btnEliminar;
     private JButton btnVerDetalle;
+    private JButton btnEditarFases;
     private ControladorEquipo controladorEquipo;
 
     public InventarioEquipos() {
@@ -65,9 +66,11 @@ public class InventarioEquipos extends JPanel {
         this.btnEditar = new JButton("Editar");
         this.btnEliminar = new JButton("Eliminar");
         this.btnVerDetalle = new JButton("Ver detalle");
+        this.btnEditarFases = new JButton("Editar fases");
         panelBotones.add(this.btnEditar);
         panelBotones.add(this.btnEliminar);
         panelBotones.add(this.btnVerDetalle);
+        panelBotones.add(this.btnEditarFases);
         JSplitPane divisor = new JSplitPane(1, scrollArbol, scrollDetalle);
         divisor.setDividerLocation(300);
         this.add(divisor, "Center");
@@ -75,6 +78,7 @@ public class InventarioEquipos extends JPanel {
         this.btnEditar.addActionListener((ex) -> this.Editar());
         this.btnEliminar.addActionListener((ex) -> this.Eliminar());
         this.btnVerDetalle.addActionListener((ex) -> this.VerDetalle());
+        this.btnEditarFases.addActionListener(e -> this.EditarFases());
     }
 
     private void VerDetalle() {
@@ -127,7 +131,24 @@ public class InventarioEquipos extends JPanel {
         }
 
     }
-
+    private void EditarFases() {
+        TreePath seleccion = this.arbolInventario.getSelectionPath();
+        if (seleccion != null) {
+            DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)seleccion.getLastPathComponent();
+            if (nodo.getUserObject() instanceof Equipo) {
+                Equipo e = (Equipo)nodo.getUserObject();
+                if (JOptionPane.showConfirmDialog(this, "¿Desea editar las fases del equipo " + e.getDescripcion() + " ?", "Confirmar edición", 0) == 0) {
+                    JFrame frame = new JFrame("Editar fases");
+                    frame.setDefaultCloseOperation(2);
+                    frame.setLocationRelativeTo((Component)null);
+                    JPanel panelContenido = new ListaFases(e);
+                    frame.add(panelContenido);
+                    frame.setSize(1000, 600);
+                    frame.setVisible(true);
+                }
+            }
+        }
+    }
     private void Eliminar() {
         TreePath seleccion = this.arbolInventario.getSelectionPath();
         if (seleccion != null) {

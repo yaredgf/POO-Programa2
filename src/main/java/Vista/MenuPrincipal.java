@@ -68,6 +68,7 @@ public class MenuPrincipal extends JFrame {
         itemAdminFalla.addActionListener((e) -> controlador.cargarPanel(new ListaFallas()));
         itemCorrOrdenes.addActionListener(e -> controlador.cargarPanel(new OrdenesCorrectivo()));
         itemAdminTareas.addActionListener(e-> controlador.cargarPanel(new ListaTareas()));
+        itemAcercaDe.addActionListener(e -> controlador.cargarPanel(new AcercaDe()));
         
         itemPrevOrdenes.addActionListener(e -> controlador.cargarPanel(new OrdenesPreventivo()));
     }
