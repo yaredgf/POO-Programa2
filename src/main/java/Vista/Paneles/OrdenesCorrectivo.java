@@ -135,7 +135,15 @@ public class OrdenesCorrectivo extends JPanel {
         frame.setVisible(true);
     }
 
-    private void Cerrar(OrdenDeTrabajoCorrectivo orden){
+    private void Cerrar(OrdenDeTrabajoCorrectivo orden)
+    {
+        JFrame frame = new JFrame("Cerrar Orden Correctiva");
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        JPanel panelContenido = new CerrarOrdenCorrectiva();
+        frame.add(panelContenido);
+        frame.setSize(1000, 600);
+        frame.setVisible(true);
 
 
     }
@@ -239,8 +247,8 @@ public class OrdenesCorrectivo extends JPanel {
     private void Cancelar(OrdenDeTrabajoCorrectivo orden){
         if(JOptionPane.showConfirmDialog(this, "¿Seguro que desea cancelar la orden de trabajo correctivo #"+orden.getId()+"?", "Confirmación", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             String motivo = JOptionPane.showInputDialog(this, "Ingrese un motivo de cancelación: ", "Cancelar orden", JOptionPane.QUESTION_MESSAGE);
-            controlador.Cancelar(orden.getId(),motivo);
-            JOptionPane.showMessageDialog(this, "Orden cancelada correctamente");
+            if (controlador.Cancelar(orden.getId(),motivo))
+                JOptionPane.showMessageDialog(this, "Orden cancelada correctamente");
         }
         else{
             JOptionPane.showMessageDialog(this, "Operación interrumpida.");

@@ -6,6 +6,7 @@ package Controlador;
 
 import Modelo.Entidades.Equipo;
 import Modelo.Entidades.Falla;
+import Modelo.Entidades.Fase;
 import Modelo.Entidades.OrdenDeTrabajo;
 import Modelo.Entidades.OrdenDeTrabajoPreventivo;
 import Modelo.Metodos.EquipoM;
@@ -22,7 +23,7 @@ import javax.swing.JOptionPane;
 public class ControladorOrdenesPreventivo 
 {
     OrdenDeTrabajoM metodos;
-    ControladorOrdenesPreventivo()
+    public ControladorOrdenesPreventivo()
     {
         metodos = new  OrdenDeTrabajoM();
     }
@@ -182,6 +183,25 @@ public class ControladorOrdenesPreventivo
             return false;
         }
         
+        // Generar próximo
+        Equipo equipo = GetEquipo(otp.getIdEquipo());
+        ArrayList<Fase> fases = equipo.getFasesMantenimiento();
+        for (int i = 0;i < fases.size(); i++)
+        {
+            if (fases.get(i).getId() == otp.getIdFase())
+            {
+                if (i+1 < fases.size())
+                {
+                    // Siguiente
+                }
+                else
+                {
+                    // Repetir ciclo
+                }
+            }
+        }
+        
+        
         return metodos.Editar(otp);
     }
 
@@ -215,6 +235,11 @@ public class ControladorOrdenesPreventivo
         EquipoM m = new EquipoM();
         return m.Buscar();
     }
+    public Falla BuscarFalla(int id){
+        FallaM m = new FallaM();
+        return m.Buscar(id);
+    }
+    
     public ArrayList<Falla> BuscarTodasFallas(){
         FallaM m = new FallaM();
         return m.Buscar();

@@ -27,6 +27,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.WindowConstants;
 /**
  *
  * @author Usuario
@@ -54,16 +55,7 @@ public class OrdenesPreventivo extends JPanel
     
     public OrdenesPreventivo()
     {
-        lista = new ArrayList<OrdenDeTrabajoPreventivo>();
-        OrdenDeTrabajoPreventivo otp = new OrdenDeTrabajoPreventivo();
-        OrdenDeTrabajoPreventivo otp1 = new OrdenDeTrabajoPreventivo();
-        otp.setId(1);
-        otp.setIdEquipo(1);
-        lista.add(otp);
-        otp1.setId(2);
-        otp1.setIdEquipo(3);
-        lista.add(otp1);
-        
+        controlador = new ControladorOrdenesPreventivo();
         this.inicializarComponentes();
     }
     private void inicializarComponentes()
@@ -103,6 +95,9 @@ public class OrdenesPreventivo extends JPanel
         panelOrdenes.setLayout(new BoxLayout(panelOrdenes, BoxLayout.Y_AXIS));
         
         listaUIModelo = new DefaultListModel<>();
+        
+        if (lista == null)
+            lista = new ArrayList<OrdenDeTrabajoPreventivo>();
         this.listaUIModelo.addAll(lista);
         listaUI = new JList<>(this.listaUIModelo);
         listaUI.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -129,10 +124,15 @@ public class OrdenesPreventivo extends JPanel
         panelOpciones.setBackground(new Color(50, 50, 255));
         
         btnNuevaOrden = new JButton("Nueva Orden");
+        btnNuevaOrden.addActionListener(e -> {NuevaOrden();});
         btnIniciarOrden = new JButton("Iniciar Orden");
+        btnIniciarOrden.addActionListener(e -> {IniciarOrden();});
         btnActualizar = new JButton("Actualizar");
+        btnActualizar.addActionListener(e -> {Actualizar();});
         btnCerrarOrden = new JButton("Cerrar Orden");
+        btnCerrarOrden.addActionListener(e -> {CerrarOrden();});
         btnCancelarOrden = new JButton("Cancelar Orden");
+        btnCancelarOrden.addActionListener(e -> {CancelarOrden();});
         
         panelOpciones.add(btnNuevaOrden);
         panelOpciones.add(btnIniciarOrden);
@@ -163,28 +163,50 @@ public class OrdenesPreventivo extends JPanel
     private void MostrarDetalles(OrdenDeTrabajoPreventivo orden)
     {
         ordenSeleccionada = orden;
-        JOptionPane.showMessageDialog(null,"Oopsie", Integer.toString(orden.getId()), JOptionPane.ERROR_MESSAGE);
     }
     
     private void NuevaOrden()
     {
         
+        JFrame frame = new JFrame("Agregar Orden Correctiva");
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        JPanel panelContenido = new AgregarOrdenPreventiva();
+        frame.add(panelContenido);
+        frame.setSize(1000, 600);
+        frame.setVisible(true);
     }
     private void IniciarOrden()
     {
-        
+        if (controlador.Iniciar(ordenSeleccionada.getId()))
+            JOptionPane.showMessageDialog(null,"Esta orden fue iniciada con éxito", "Operación exitosa", JOptionPane.INFORMATION_MESSAGE);
     }
     private void Actualizar()
     {
-        
+        JFrame frame = new JFrame("Agregar Orden Correctiva");
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        JPanel panelContenido = new EditarOrdenPreventiva(ordenSeleccionada);
+        frame.add(panelContenido);
+        frame.setSize(1000, 600);
+        frame.setVisible(true);
     }
     private void CerrarOrden()
     {
         
+        if (controlador.Cerrar(ordenSeleccionada))
+            JOptionPane.showMessageDialog(null,"Esta orden fue iniciada con éxito", "Operación exitosa", JOptionPane.INFORMATION_MESSAGE);
     }
     private void CancelarOrden()
     {
-        
+        if(JOptionPane.showConfirmDialog(this, "¿Seguro que desea cancelar la orden de trabajo correctivo #"+ordenSeleccionada.getId()+"?", "Confirmación", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            String motivo = JOptionPane.showInputDialog(this, "Ingrese un motivo de cancelación: ", "Cancelar orden", JOptionPane.QUESTION_MESSAGE);
+            if (controlador.Cancelar(ordenSeleccionada.getId(),motivo))
+                JOptionPane.showMessageDialog(this, "Orden cancelada correctamente");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Operación interrumpida.");
+        }
     }
 
     

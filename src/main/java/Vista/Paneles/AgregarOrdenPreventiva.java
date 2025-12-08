@@ -4,18 +4,50 @@
  */
 package Vista.Paneles;
 
+import Modelo.Entidades.Equipo;
+import Modelo.Entidades.Falla;
+import Modelo.Entidades.FallaObservada;
+import Modelo.Entidades.OrdenDeTrabajoPreventivo;
+import Controlador.ControladorOrdenesPreventivo;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Window;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author Usuario
  */
 public class AgregarOrdenPreventiva extends javax.swing.JPanel {
 
+    ControladorOrdenesPreventivo controlador;
+    //modal equipos
+    JFrame modalEquipos;
+    JList listaEquipos;
+    DefaultListModel<Equipo> modeloEquipos = new DefaultListModel<>();
+    Equipo equipoSeleccionado;
     /**
      * Creates new form AgregarOrdenPreventiva
      */
     public AgregarOrdenPreventiva() {
+        controlador = new ControladorOrdenesPreventivo();
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,6 +69,11 @@ public class AgregarOrdenPreventiva extends javax.swing.JPanel {
         jLabel1.setText("Equipo seleccionado:");
 
         btnSeleccionarEquipo.setText("Seleccionar Equipo");
+        btnSeleccionarEquipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSeleccionarEquipoMouseClicked(evt);
+            }
+        });
         btnSeleccionarEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSeleccionarEquipoActionPerformed(evt);
@@ -46,10 +83,20 @@ public class AgregarOrdenPreventiva extends javax.swing.JPanel {
         lblEquipoActual.setText("No se ha seleccionado ninguno");
 
         btnVolver.setText("Volver");
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverMouseClicked(evt);
+            }
+        });
 
         jLabel2.setText("Fecha de ejecución:");
 
         btnAgregar.setText("Agregar");
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseClicked(evt);
+            }
+        });
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -111,6 +158,100 @@ public class AgregarOrdenPreventiva extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
+        // TODO
+        Window w = SwingUtilities.getWindowAncestor(this);
+            if (w != null) w.dispose();
+    }//GEN-LAST:event_btnVolverMouseClicked
+
+    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
+        // TODO
+        try{
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+            OrdenDeTrabajoPreventivo orden = new OrdenDeTrabajoPreventivo();
+            orden.setIdEquipo(equipoSeleccionado.getId());
+            orden.setFechaEjecucion(sdf.parse(inputFechaEjecucion.getText()));
+
+            if (controlador.Agregar(orden))
+                JOptionPane.showMessageDialog(null,"Esta orden fue agregada con éxito", "Realizado con éixto", JOptionPane.INFORMATION_MESSAGE);;
+        }
+        catch(ParseException e){
+            JOptionPane.showMessageDialog(null, "Fallo al agregar: Formato de fecha incorrecto.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Fallo al agregar: Llame a Dios. "+e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAgregarMouseClicked
+
+    private void btnSeleccionarEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeleccionarEquipoMouseClicked
+        // TODO
+        BuscarEquipo();
+    }//GEN-LAST:event_btnSeleccionarEquipoMouseClicked
+
+    private void BuscarEquipo(){
+        JLabel lblEqSeleccion = new JLabel();
+        //Carga el modal
+        modalEquipos = new JFrame("Buscar Equipo");
+        modalEquipos.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JPanel contenido = new  JPanel();
+        contenido.setLayout(new BoxLayout(contenido, BoxLayout.Y_AXIS));
+        JPanel panelLista = new JPanel(new BorderLayout());
+        modeloEquipos = new DefaultListModel<>();
+        modeloEquipos.addAll(controlador.BuscarTodosEquipos());
+        listaEquipos = new JList(modeloEquipos);
+        listaEquipos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listaEquipos.addListSelectionListener(e ->{
+            if(!e.getValueIsAdjusting()){
+                equipoSeleccionado = (Equipo)modeloEquipos.get(listaEquipos.getSelectedIndex());
+                lblEqSeleccion.setText(equipoSeleccionado.toString());
+                lblEqSeleccion.revalidate();
+                lblEqSeleccion.repaint();
+                lblEquipoActual.setText(equipoSeleccionado.toString());
+                lblEquipoActual.revalidate();
+                lblEquipoActual.repaint();
+            }
+        });
+        panelLista.add(new JScrollPane(listaEquipos),  BorderLayout.CENTER);
+        contenido.add(panelLista);
+
+        JPanel panelInferior = new JPanel(new GridLayout(1, 2, 10, 0));
+
+        JPanel panelBotones = new JPanel();
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.setFont(new Font("Arial", Font.BOLD, 15));
+        btnVolver.addActionListener(e -> {
+            modalEquipos.dispose();
+        });
+        panelBotones.add(btnVolver);
+        panelInferior.add(panelBotones);
+
+        JPanel panelTxtEqSelec = new JPanel();
+        panelTxtEqSelec.setLayout(new BoxLayout(panelTxtEqSelec, BoxLayout.Y_AXIS));
+        JLabel tituloEqSelec = new JLabel("Equipo seleccionado:");
+        tituloEqSelec.setFont(new Font("Arial", Font.BOLD, 17));
+        tituloEqSelec.setAlignmentX(0);
+        panelTxtEqSelec.add(tituloEqSelec);
+        lblEqSeleccion.setFont(new Font("Arial", Font.PLAIN, 15));
+        if(equipoSeleccionado == null)
+            lblEqSeleccion.setText("No se ha seleccionado ninguno.");
+        else{
+            lblEqSeleccion.setText(equipoSeleccionado.toString());
+        }
+        lblEqSeleccion.revalidate();
+        lblEqSeleccion.repaint();
+
+        lblEqSeleccion.setAlignmentX(0);
+        panelTxtEqSelec.add(lblEqSeleccion);
+        panelInferior.add(panelTxtEqSelec);
+
+        modalEquipos.add(contenido, BorderLayout.CENTER);
+        modalEquipos.add(panelInferior, BorderLayout.SOUTH);
+        modalEquipos.pack();
+        modalEquipos.setLocationRelativeTo(null);
+        modalEquipos.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -122,3 +263,13 @@ public class AgregarOrdenPreventiva extends javax.swing.JPanel {
     private javax.swing.JLabel lblEquipoActual;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+
+
+
+
+
+
+

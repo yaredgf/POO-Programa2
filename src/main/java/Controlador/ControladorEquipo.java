@@ -79,6 +79,9 @@ public class ControladorEquipo {
             return false;
         }
         equipo.setId(metodos.GetUltimoId()+1);
+        
+        
+        
         return metodos.Nuevo(equipo);
     }
     public Equipo Buscar(int id){
