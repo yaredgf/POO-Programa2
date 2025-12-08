@@ -24,7 +24,12 @@ public class Main
     {
         System.out.println("Adios mundo");
         //XD
-
+//        ArrayList<Equipo> equipos = new ArrayList<>();
+//        Archivos<ArrayList<Equipo>> arch = new Archivos<>();
+//        Equipo e = new Equipo();
+//        e.setId(1);
+//        equipos.add(e);
+//        arch.EscribirArchivo("equipos", equipos);
         SwingUtilities.invokeLater(()->{
             new MenuPrincipal().setVisible(true);
         });

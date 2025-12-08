@@ -181,8 +181,8 @@ public class ListaFases extends JPanel {
         listaFasesJList.addListSelectionListener(ev->{
             if (ev.getValueIsAdjusting()) return;
 
-            int newIndex = listaFasesJList.getSelectedIndex();
-            if (newIndex == -1) return;
+            int nuevoIndex = listaFasesJList.getSelectedIndex();
+            if (nuevoIndex == -1) return;
 
 
             if (faseSeleccionada != null && faseSeleccionadaIndex >= 0) {
@@ -214,7 +214,7 @@ public class ListaFases extends JPanel {
             }
 
 
-            faseSeleccionadaIndex = newIndex;
+            faseSeleccionadaIndex = nuevoIndex;
             faseSeleccionada = modeloListaFases.get(faseSeleccionadaIndex);
 
             // proteger contra nulls
@@ -412,10 +412,13 @@ public class ListaFases extends JPanel {
     }
 
     private void Guardar(){
+        if (faseSeleccionada != null && faseSeleccionadaIndex >= 0){
+            listaFasesJList.clearSelection();
+            listaFasesJList.setSelectedIndex(faseSeleccionadaIndex);
+        }
         for(Fase f : listaFases){
             f.setId(listaFases.indexOf(f));
         }
-        listaFasesJList.setSelectedIndex(faseSeleccionadaIndex);
         equipo.setFasesMantenimiento(listaFases);
         if(controlador.GuardarFases(equipo)){
             JOptionPane.showMessageDialog(null, "Fases guardadas correctamente.", "Exito", JOptionPane.INFORMATION_MESSAGE);
