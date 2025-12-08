@@ -29,6 +29,12 @@ public class Main
         //Archivos<ArrayList<OrdenDeTrabajo>> archTarea = new Archivos<ArrayList<OrdenDeTrabajo>>();
         //archTarea.EscribirArchivo("ordenesDeTrabajo", new ArrayList<OrdenDeTrabajo>());
 
+//        ArrayList<Equipo> equipos = new ArrayList<>();
+//        Archivos<ArrayList<Equipo>> arch = new Archivos<>();
+//        Equipo e = new Equipo();
+//        e.setId(1);
+//        equipos.add(e);
+//        arch.EscribirArchivo("equipos", equipos);
         SwingUtilities.invokeLater(()->{
             new MenuPrincipal().setVisible(true);
         });
