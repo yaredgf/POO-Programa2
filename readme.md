@@ -1,4 +1,8 @@
 # Changelog
+## v0.4.3
+    * Se terminó por completo el módulo de Mantenimiento  preventivo
+## v0.4.2
+    * Se terminó casi por completo el módulo de Mantenimiento preventivo
 ## pre v0.4.0
     * Se terminó por completo el módulo de Mantenimiento correctivo y parcialmente el de Mantenimiento preventivo
     * Se añadió el CRUD de fases
