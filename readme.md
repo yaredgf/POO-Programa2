@@ -1,4 +1,7 @@
 # Changelog
+## v0.3.0
+    * Módulo de Fases implementado
+    * Se agregó el "Acerca de"
 ## v0.2.1.1
     * Hotfixes para cuando las listas vienen vacías
 ## v0.2.1
