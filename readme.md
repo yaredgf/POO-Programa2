@@ -1,4 +1,13 @@
 # Changelog
+## v1.0
+    * Se creó el módulo de Reportes:
+       * ReporteInventarioEquipos
+       * ReporteOperacionesMantenimiento
+       * ReporteOrdenesTrabajo
+       * Graficos
+    * Se creó el módulo ConsultaMantenimientos
+    * Hotfixes varios por bugs menores.
+    * Despliegue del programa completo.
 ## v0.4.3
     * Se terminó por completo el módulo de Mantenimiento  preventivo
 ## v0.4.2
