@@ -113,7 +113,7 @@ public class ControladorOrdenesCorrectivo {
     {
         return metodos.Editar(otc);
     }
-    
+
     public boolean Iniciar(int id){
         OrdenDeTrabajoCorrectivo otc = (OrdenDeTrabajoCorrectivo)metodos.Buscar(id);
         
@@ -180,7 +180,7 @@ public class ControladorOrdenesCorrectivo {
         otc.setFechaCancelacion(new Date());
         return metodos.Editar(otc);
     }
-    
+
     public Equipo GetEquipo(int id){
         EquipoM m = new EquipoM();
         return m.Buscar(id);

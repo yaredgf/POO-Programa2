@@ -3,6 +3,7 @@ package Vista.Paneles;
 import Controlador.ControladorOrdenesCorrectivo;
 import Modelo.Entidades.Equipo;
 import Modelo.Entidades.Falla;
+import Modelo.Entidades.FallaObservada;
 import Modelo.Entidades.OrdenDeTrabajoCorrectivo;
 
 import javax.swing.*;
@@ -223,10 +224,17 @@ public class AgregarOrdenCorrectiva extends JPanel {
         try{
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
             OrdenDeTrabajoCorrectivo orden = new OrdenDeTrabajoCorrectivo();
             orden.setIdEquipo(equipoSeleccionado.getId());
             orden.setObservacionesIniciales(txtObservacionesIniciales.getText());
             orden.setFechaEjecucion(sdf.parse(txtFechaRealizacion.getText()));
+
+            ArrayList<FallaObservada> fallasObservadas = new ArrayList<>();
+            for(Falla f: fallasAgregadas)
+                fallasObservadas.add(new FallaObservada(f.getId(), null, null));
+            orden.setFallasReportadas(fallasObservadas);
+
             controlador.Agregar(orden);
         }
         catch(ParseException e){

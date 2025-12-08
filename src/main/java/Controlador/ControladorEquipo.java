@@ -11,6 +11,7 @@ public class ControladorEquipo {
     public ControladorEquipo(){
         metodos = new EquipoM();
     }
+
     public boolean Editar(Equipo equipo){
         //Validacion de datos
         boolean existeEqPrincipalP = false;
@@ -26,16 +27,22 @@ public class ControladorEquipo {
                 }
             }
         }
+        else{
+            existeEqPrincipalP = true;
+        }
+
         if(!existeEqPrincipalP){
             JOptionPane.showMessageDialog(null, "Error: El equipo principal no existe.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+
         if(equipo.getFechaPuestaEnServicio() != null) {
             if (equipo.getFechaPuestaEnServicio().before(equipo.getFechaAdquisicion())) {
                 JOptionPane.showMessageDialog(null, "Error: La fecha de puesta en servicio no puede ser antes de la fecha de adquisición.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         }
+
         if(equipo.getMesesVidaUtil() <= 0 || equipo.getCostoInicial() <= 0){
             JOptionPane.showMessageDialog(null, "Los meses de vida útil y el costo inicial deben ser mayores a 0.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -53,6 +60,9 @@ public class ControladorEquipo {
                     break;
                 }
             }
+        }
+        else{
+            existeEqPrincipalP = true;
         }
         if(!existeEqPrincipalP){
             JOptionPane.showMessageDialog(null, "Error: El equipo principal no existe.", "Error", JOptionPane.ERROR_MESSAGE);
