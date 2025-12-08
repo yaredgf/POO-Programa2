@@ -84,7 +84,7 @@ public class OrdenesCorrectivo extends JPanel {
         panelDetalles = new JPanel();
         panelDetalles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panelDetalles.setBackground(new Color(255, 255, 255));
-        JLabel uwu = new JLabel("Omg un texto lesgo sisi uwu.");
+        JLabel uwu = new JLabel("Por favor seleccione una orden.");
         uwu.setFont(new Font("Times New Roman", Font.BOLD, 20));
         panelDetalles.add(uwu);
         panelContenido.add(panelDetalles);
