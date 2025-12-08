@@ -1,7 +1,9 @@
 package Controlador;
 
 import Modelo.Entidades.Equipo;
+import Modelo.Entidades.Tarea;
 import Modelo.Metodos.EquipoM;
+import Modelo.Metodos.TareaM;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -99,5 +101,11 @@ public class ControladorEquipo {
         }
         metodos.Eliminar(id);
     }
-
+    public boolean GuardarFases(Equipo equipo){
+        return Editar(equipo);
+    }
+    public ArrayList<Tarea> BuscarTodasTareas(){
+        TareaM tm = new TareaM();
+        return tm.Buscar();
+    }
 }

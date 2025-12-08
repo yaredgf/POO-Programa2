@@ -1,8 +1,14 @@
 # Changelog
+## v0.3.0.1
+    * Se agregó la dependencia Maven de JFreeChart
+## v0.3.0
+    * Módulo de Fases implementado
+    * Se agregó el "Acerca de"
 ## v0.2.1.1
     * Hotfixes para cuando las listas vienen vacías
 ## v0.2.1
     * Se creó vista "EditarOrdenCorrectiva"
+    * CRUD de Tareas
 ## v0.2.0
     * Se creó el controlador de Orden Preventiva
     * Se terminó el controlador de Orden Correctiva

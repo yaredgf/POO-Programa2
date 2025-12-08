@@ -135,16 +135,14 @@ public class OrdenesCorrectivo extends JPanel {
         frame.setVisible(true);
     }
 
-    private void Cerrar(OrdenDeTrabajoCorrectivo orden)
-    {
+    private void Cerrar(OrdenDeTrabajoCorrectivo orden){
         JFrame frame = new JFrame("Cerrar Orden Correctiva");
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        JPanel panelContenido = new CerrarOrdenCorrectiva();
+        JPanel panelContenido = new CerrarOrdenCorrectiva(orden);
         frame.add(panelContenido);
         frame.setSize(1000, 600);
         frame.setVisible(true);
-
 
     }
 
