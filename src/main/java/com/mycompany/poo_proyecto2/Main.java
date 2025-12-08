@@ -49,6 +49,7 @@ public class Main
                 "Now we are one in everlasting peace\n" +
                 "We hope that you choke, that you choke x3");
         o1.Nuevo(o);
+        
 
         SwingUtilities.invokeLater(()->{
             new MenuPrincipal().setVisible(true);

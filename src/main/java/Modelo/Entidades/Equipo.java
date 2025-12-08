@@ -28,6 +28,7 @@ public class Equipo implements java.io.Serializable
     private String especificacionesTecnicas;
     private String informacionGarantia;
     private ArrayList<Fase> fasesMantenimiento;
+    private boolean mantPrevActivo;
 
     public Equipo()
     {
@@ -46,10 +47,11 @@ public class Equipo implements java.io.Serializable
         this.especificacionesTecnicas = null;
         this.informacionGarantia = null;
         this.fasesMantenimiento = null;
+        this.mantPrevActivo = false;
     }
 
 
-    public Equipo(int id, int idEquipoPrincipal, String descripcion, int tipoEquipo, String ubicacionFisica, String fabricante, String serie, Date fechaAdquisicion, Date fechaPuestaEnServicio, int mesesVidaUtil, EstadoEquipo estadoEquipo, float costoInicial, String especificacionesTecnicas, String informacionGarantia, ArrayList<Fase> fasesMantenimiento)
+    public Equipo(int id, int idEquipoPrincipal, String descripcion, int tipoEquipo, String ubicacionFisica, String fabricante, String serie, Date fechaAdquisicion, Date fechaPuestaEnServicio, int mesesVidaUtil, EstadoEquipo estadoEquipo, float costoInicial, String especificacionesTecnicas, String informacionGarantia, ArrayList<Fase> fasesMantenimiento, boolean mantPrevActivo)
     {
         this.id = id;
         this.idEquipoPrincipal = idEquipoPrincipal;
@@ -66,6 +68,7 @@ public class Equipo implements java.io.Serializable
         this.especificacionesTecnicas = especificacionesTecnicas;
         this.informacionGarantia = informacionGarantia;
         this.fasesMantenimiento = fasesMantenimiento;
+        this.mantPrevActivo = mantPrevActivo;
     }
 
 
@@ -203,6 +206,16 @@ public class Equipo implements java.io.Serializable
     public ArrayList<Fase> getFasesMantenimiento()
     {
         return this.fasesMantenimiento;
+    }
+    
+    public void setMantPrevActivo(boolean mantPrevActivo)
+    {
+        this.mantPrevActivo = mantPrevActivo;
+    }
+
+    public boolean getMantPrevActivo()
+    {
+        return this.mantPrevActivo;
     }
 
     public String toString()

@@ -13,16 +13,19 @@ import java.util.Date;
 public class OrdenDeTrabajoPreventivo extends OrdenDeTrabajo implements java.io.Serializable
 {
     private ArrayList<FallaObservada> fallasObservadas;
+    private int idFase;
 
     public OrdenDeTrabajoPreventivo()
     {
         this.fallasObservadas = null;
+        this.idFase = -1;
     }
 
 
-    public OrdenDeTrabajoPreventivo(ArrayList<FallaObservada> fallasObservadas)
+    public OrdenDeTrabajoPreventivo(ArrayList<FallaObservada> fallasObservadas, int idFase)
     {
         this.fallasObservadas = fallasObservadas;
+        this.idFase = idFase;
     }
 
 
@@ -36,4 +39,13 @@ public class OrdenDeTrabajoPreventivo extends OrdenDeTrabajo implements java.io.
         return this.fallasObservadas;
     }
     
+    public void setIdFase(int idFase)
+    {
+        this.idFase = idFase;
+    }
+
+    public int getIdFase()
+    {
+        return this.idFase;
+    }
 }
