@@ -186,21 +186,27 @@ public class ControladorOrdenesPreventivo
         // Generar próximo
         Equipo equipo = GetEquipo(otp.getIdEquipo());
         ArrayList<Fase> fases = equipo.getFasesMantenimiento();
+        int indice = 0;
         for (int i = 0;i < fases.size(); i++)
         {
             if (fases.get(i).getId() == otp.getIdFase())
             {
-                if (i+1 < fases.size())
-                {
-                    // Siguiente
-                }
-                else
-                {
-                    // Repetir ciclo
-                }
+                if (i+1 < fases.size()) indice = i+1;
+                break;
             }
         }
         
+        // Crear la nueva orden
+        OrdenDeTrabajoPreventivo o = new OrdenDeTrabajoPreventivo();
+        EquipoM m = new EquipoM();
+        equipo.setMantPrevActivo(false);
+        m.Editar(equipo);
+        
+        //Content
+        
+        
+        o.setIdEquipo(otp.getIdEquipo());
+        Agregar(o);
         
         return metodos.Editar(otp);
     }
