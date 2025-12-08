@@ -137,7 +137,13 @@ public class OrdenesCorrectivo extends JPanel {
     }
 
     private void Editar(OrdenDeTrabajoCorrectivo orden){
-
+        JFrame frame = new JFrame("Editar Orden Correctiva");
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        JPanel panelContenido = new EditarOrdenCorrectiva(orden);
+        frame.add(panelContenido);
+        frame.setSize(1000, 600);
+        frame.setVisible(true);
     }
 
     private void Detalles(OrdenDeTrabajoCorrectivo orden){

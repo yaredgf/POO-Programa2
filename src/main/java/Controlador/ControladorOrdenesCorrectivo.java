@@ -36,7 +36,7 @@ public class ControladorOrdenesCorrectivo {
         otc.setFechaFinalizacion(new Date());
         return metodos.Editar(otc);
     }
-    
+
     public boolean Iniciar(int id){
         OrdenDeTrabajoCorrectivo otc = (OrdenDeTrabajoCorrectivo)metodos.Buscar(id);
         otc.setFechaInicio(new Date());
@@ -50,7 +50,7 @@ public class ControladorOrdenesCorrectivo {
         otc.setFechaCancelacion(new Date());
         return metodos.Editar(otc);
     }
-    
+
     public Equipo GetEquipo(int id){
         EquipoM m = new EquipoM();
         return m.Buscar(id);
@@ -63,19 +63,27 @@ public class ControladorOrdenesCorrectivo {
         FallaM m = new FallaM();
         return m.Buscar();
     }
-    
+
     public boolean Agregar(OrdenDeTrabajoCorrectivo otc)
     {
         otc.setFechaCreacion(new Date());
         otc.setId(GetUltimoId()+1);
+        if(otc.getFallasReportadas()==null)
+            otc.setFallasReportadas(new ArrayList<>());
+        if(otc.getFallasEncontradas()==null)
+            otc.setFallasEncontradas(new ArrayList<>());
         return metodos.Nuevo(otc);
     }
-    
+
     public boolean Actualizar(OrdenDeTrabajoCorrectivo otc)
     {
         return metodos.Editar(otc);
     }
-    
+
+    public Falla BuscarFalla(int id){
+        FallaM m = new FallaM();
+        return m.Buscar(id);
+    }
     public int GetUltimoId(){
         return metodos.Buscar().getLast().getId();
     }
