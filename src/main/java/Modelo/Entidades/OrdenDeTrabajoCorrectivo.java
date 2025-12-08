@@ -17,8 +17,8 @@ public class OrdenDeTrabajoCorrectivo extends OrdenDeTrabajo implements java.io.
 
     public OrdenDeTrabajoCorrectivo()
     {
-        this.fallasReportadas = null;
-        this.fallasEncontradas = null;
+        this.fallasReportadas = new ArrayList<FallaObservada>();
+        this.fallasEncontradas = new ArrayList<FallaObservada>();
     }
 
 

@@ -221,6 +221,7 @@ public class ControladorOrdenesPreventivo
     }
     
     public int GetUltimoId(){
+        if (metodos.Buscar().size() == 0) return 0;
         return metodos.Buscar().getLast().getId();
     }
 }

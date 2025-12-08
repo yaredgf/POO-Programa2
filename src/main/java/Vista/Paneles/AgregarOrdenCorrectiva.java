@@ -230,18 +230,19 @@ public class AgregarOrdenCorrectiva extends JPanel {
             orden.setObservacionesIniciales(txtObservacionesIniciales.getText());
             orden.setFechaEjecucion(sdf.parse(txtFechaRealizacion.getText()));
 
-            ArrayList<FallaObservada> fallasObservadas = new ArrayList<>();
+            ArrayList<FallaObservada> fallasObservadas = new ArrayList<FallaObservada>();
             for(Falla f: fallasAgregadas)
                 fallasObservadas.add(new FallaObservada(f.getId(), null, null));
             orden.setFallasReportadas(fallasObservadas);
 
-            controlador.Agregar(orden);
+            if (controlador.Agregar(orden))
+                JOptionPane.showMessageDialog(null,"Esta orden fue agregada con éxito", "Realizado con éixto", JOptionPane.INFORMATION_MESSAGE);;
         }
         catch(ParseException e){
             JOptionPane.showMessageDialog(null, "Fallo al agregar: Formato de fecha incorrecto.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Fallo al agregar: Llame a Dios.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Fallo al agregar: Llame a Dios. "+e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }

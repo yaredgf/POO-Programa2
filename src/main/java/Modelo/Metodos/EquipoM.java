@@ -65,6 +65,7 @@ public class EquipoM {
     }
 
     public int GetUltimoId(){
+        if (listaEquipos.size() == 0) return 0;
         return listaEquipos.get(listaEquipos.size()-1).getId();
     }
 }

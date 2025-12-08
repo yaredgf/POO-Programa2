@@ -106,10 +106,6 @@ public class ControladorOrdenesCorrectivo {
     {
         otc.setFechaCreacion(new Date());
         otc.setId(GetUltimoId()+1);
-        if(otc.getFallasReportadas()==null)
-            otc.setFallasReportadas(new ArrayList<>());
-        if(otc.getFallasEncontradas()==null)
-            otc.setFallasEncontradas(new ArrayList<>());
         return metodos.Nuevo(otc);
     }
 
@@ -195,14 +191,14 @@ public class ControladorOrdenesCorrectivo {
     public ArrayList<Falla> BuscarTodasFallas(){
         FallaM m = new FallaM();
         return m.Buscar();
-    }
+    }    
 
     public Falla BuscarFalla(int id){
         FallaM m = new FallaM();
         return m.Buscar(id);
     }
-    
     public int GetUltimoId(){
+        if (metodos.Buscar().size() == 0) return 0;
         return metodos.Buscar().getLast().getId();
     }
 }

@@ -62,6 +62,10 @@ public class OrdenesCorrectivo extends JPanel {
         lista = controlador.BuscarTodos();
 
         listaUIModelo = new DefaultListModel<>();
+        
+        if (lista == null)
+            lista = new ArrayList<OrdenDeTrabajoCorrectivo>();
+        
         this.listaUIModelo.addAll(lista);
         listaUI = new JList<>(this.listaUIModelo);
         listaUI.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
