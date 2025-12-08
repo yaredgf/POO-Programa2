@@ -165,7 +165,6 @@ public class ControladorOrdenesCorrectivo {
             JOptionPane.showMessageDialog(null,"Esta orden no ha sido iniciada", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        
         return metodos.Editar(otc);
     }
 
@@ -196,6 +195,11 @@ public class ControladorOrdenesCorrectivo {
     public ArrayList<Falla> BuscarTodasFallas(){
         FallaM m = new FallaM();
         return m.Buscar();
+    }
+
+    public Falla BuscarFalla(int id){
+        FallaM m = new FallaM();
+        return m.Buscar(id);
     }
     
     public int GetUltimoId(){
