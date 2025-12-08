@@ -27,6 +27,7 @@ public class OrdenesCorrectivo extends JPanel {
     private JButton btnEditar;
     private JButton btnCerrar;
     private JButton btnCancelar;
+    private JButton btnIniciar;
 
     public OrdenesCorrectivo(){
         controlador = new ControladorOrdenesCorrectivo();
@@ -110,9 +111,14 @@ public class OrdenesCorrectivo extends JPanel {
         btnCancelar.addActionListener(e -> {
             Cancelar((OrdenDeTrabajoCorrectivo)this.listaUIModelo.get(this.listaUI.getSelectedIndex()));
         });
+        btnIniciar = new JButton("Iniciar Orden");
+        btnIniciar.addActionListener(e -> {
+            IniciarOrden((OrdenDeTrabajoCorrectivo)this.listaUIModelo.get(this.listaUI.getSelectedIndex()));
+        });
 
         panelBotones.add(btnAgregar);
         panelBotones.add(btnEditar);
+        panelBotones.add(btnIniciar);
         panelBotones.add(btnCerrar);
         panelBotones.add(btnCancelar);
 
@@ -241,7 +247,11 @@ public class OrdenesCorrectivo extends JPanel {
         panelDetalles.revalidate();
         panelDetalles.repaint();
     }
-
+    private void IniciarOrden(OrdenDeTrabajoCorrectivo otc)
+    {
+        if (controlador.Iniciar(otc.getId()))
+            JOptionPane.showMessageDialog(null,"Esta orden fue iniciada con éxito", "Operación exitosa", JOptionPane.INFORMATION_MESSAGE);
+    }
     private void Cancelar(OrdenDeTrabajoCorrectivo orden){
         if(JOptionPane.showConfirmDialog(this, "¿Seguro que desea cancelar la orden de trabajo correctivo #"+orden.getId()+"?", "Confirmación", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             String motivo = JOptionPane.showInputDialog(this, "Ingrese un motivo de cancelación: ", "Cancelar orden", JOptionPane.QUESTION_MESSAGE);

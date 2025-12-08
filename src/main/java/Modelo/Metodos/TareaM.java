@@ -67,6 +67,7 @@ public class TareaM {
     }
 
     public int GetUltimoId() {
+        if (listaTareas.size() == 0) return 0;
         return ((Tarea)this.listaTareas.get(this.listaTareas.size() - 1)).getId();
     }
 }

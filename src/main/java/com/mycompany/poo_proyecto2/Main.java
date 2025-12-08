@@ -24,6 +24,10 @@ public class Main
     {
         System.out.println("Adios mundo");
         //XD
+        //Archivos<ArrayList<Tarea>> archTarea = new Archivos<ArrayList<Tarea>>();
+        //archTarea.EscribirArchivo("tareas", new ArrayList<Tarea>());
+        //Archivos<ArrayList<OrdenDeTrabajo>> archTarea = new Archivos<ArrayList<OrdenDeTrabajo>>();
+        //archTarea.EscribirArchivo("ordenesDeTrabajo", new ArrayList<OrdenDeTrabajo>());
 
         SwingUtilities.invokeLater(()->{
             new MenuPrincipal().setVisible(true);

@@ -1,4 +1,7 @@
 # Changelog
+## pre v0.4.0
+    * Se terminó por completo el módulo de Mantenimiento correctivo y parcialmente el de Mantenimiento preventivo
+    * Se añadió el CRUD de fases
 ## v0.3.0.1
     * Se agregó la dependencia Maven de JFreeChart
 ## v0.3.0
