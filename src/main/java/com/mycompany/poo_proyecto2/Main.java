@@ -24,8 +24,10 @@ public class Main
     {
         System.out.println("Adios mundo");
         //XD
-
-
+        ArrayList<Tarea> listaTareas = new ArrayList<>();
+        Archivos<ArrayList<Tarea>> arch = new Archivos<>();
+        listaTareas.add(new Tarea(1, "Nerf this"));
+        arch.EscribirArchivo("tareas", listaTareas);
         SwingUtilities.invokeLater(()->{
             new MenuPrincipal().setVisible(true);
         });

@@ -45,5 +45,5 @@ public class Tarea implements java.io.Serializable
     {
         return this.descripcion;
     }
-
+    public String toString(){return this.id+" "+this.descripcion;}
 }
