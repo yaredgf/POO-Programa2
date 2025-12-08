@@ -110,7 +110,9 @@ public class ControladorOrdenesPreventivo
         return ret;
     }
     
-    
+    public OrdenDeTrabajoPreventivo Buscar(int id){
+        return (OrdenDeTrabajoPreventivo) metodos.Buscar(id);
+    }
     public boolean Agregar(OrdenDeTrabajoPreventivo otp)
     {
         ///// Validar que el mantenimiento del equipo esté discontinuado
@@ -206,6 +208,7 @@ public class ControladorOrdenesPreventivo
         
         
         o.setIdEquipo(otp.getIdEquipo());
+        o.setIdFase(indice);
         Agregar(o);
         
         return metodos.Editar(otp);

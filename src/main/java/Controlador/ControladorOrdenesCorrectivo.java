@@ -1,9 +1,6 @@
 package Controlador;
 
-import Modelo.Entidades.Equipo;
-import Modelo.Entidades.Falla;
-import Modelo.Entidades.OrdenDeTrabajo;
-import Modelo.Entidades.OrdenDeTrabajoCorrectivo;
+import Modelo.Entidades.*;
 import Modelo.Metodos.EquipoM;
 import Modelo.Metodos.FallaM;
 import Modelo.Metodos.OrdenDeTrabajoM;
@@ -179,7 +176,9 @@ public class ControladorOrdenesCorrectivo {
         otc.setFechaCancelacion(new Date());
         return metodos.Editar(otc);
     }
-
+    public OrdenDeTrabajoCorrectivo Buscar(int id){
+        return (OrdenDeTrabajoCorrectivo) metodos.Buscar(id);
+    }
     public Equipo GetEquipo(int id){
         EquipoM m = new EquipoM();
         return m.Buscar(id);
@@ -197,6 +196,7 @@ public class ControladorOrdenesCorrectivo {
         FallaM m = new FallaM();
         return m.Buscar(id);
     }
+
     public int GetUltimoId(){
         if (metodos.Buscar().size() == 0) return 0;
         return metodos.Buscar().getLast().getId();

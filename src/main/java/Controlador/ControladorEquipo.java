@@ -2,8 +2,10 @@ package Controlador;
 
 import Modelo.Entidades.Equipo;
 import Modelo.Entidades.Tarea;
+import Modelo.Entidades.TipoEquipo;
 import Modelo.Metodos.EquipoM;
 import Modelo.Metodos.TareaM;
+import Modelo.Metodos.TipoEquipoM;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -107,5 +109,12 @@ public class ControladorEquipo {
     public ArrayList<Tarea> BuscarTodasTareas(){
         TareaM tm = new TareaM();
         return tm.Buscar();
+    }
+
+    public String GetTipoEquipo(int id){
+        TipoEquipoM tm = new TipoEquipoM();
+        TipoEquipo t = tm.Buscar(id);
+        if(t == null) return "";
+        return t.getDescripcion();
     }
 }

@@ -44,10 +44,17 @@ public class MenuPrincipal extends JFrame {
         JMenu menuReportes = new JMenu("Reportes");
         JMenuItem itemReporteInventario = new JMenuItem("Inventario");
         JMenuItem itemReporteOperaciones = new JMenuItem("Operaciones de mantenimiento");
-        new JMenuItem("Órdenes de trabajo");
-        new JMenuItem("Graficos de análisis");
+        JMenuItem itemReporteOT = new JMenuItem("Órdenes de trabajo");
+        JMenuItem itemReporteConsulta = new JMenuItem("Consulta de mantenimiento");
+        JMenuItem itemGraficos = new JMenuItem("Graficos de análisis");
+
         menuReportes.add(itemReporteInventario);
         menuReportes.add(itemReporteOperaciones);
+        menuReportes.add(itemReporteOT);
+        menuReportes.add(itemGraficos);
+        menuReportes.addSeparator();
+        menuReportes.add(itemReporteConsulta);
+
         JMenu menuAyuda = new JMenu("Ayuda");
         JMenuItem itemAcercaDe = new JMenuItem("Acerca de");
         JMenuItem itemManual = new JMenuItem("Manual de usuario");
@@ -69,7 +76,12 @@ public class MenuPrincipal extends JFrame {
         itemCorrOrdenes.addActionListener(e -> controlador.cargarPanel(new OrdenesCorrectivo()));
         itemAdminTareas.addActionListener(e-> controlador.cargarPanel(new ListaTareas()));
         itemAcercaDe.addActionListener(e -> controlador.cargarPanel(new AcercaDe()));
-        
+        itemReporteInventario.addActionListener(e->controlador.cargarPanel(new ReporteInventarioEquipos()));
         itemPrevOrdenes.addActionListener(e -> controlador.cargarPanel(new OrdenesPreventivo()));
+        itemReporteOperaciones.addActionListener(e->controlador.cargarPanel(new ReporteOperacionesMantenimiento()));
+        itemPrevOrdenes.addActionListener(e -> controlador.cargarPanel(new OrdenesPreventivo()));
+        itemReporteOT.addActionListener(e->controlador.cargarPanel(new ReporteOrdenesTrabajo()));
+        itemReporteConsulta.addActionListener(e->controlador.cargarPanel(new ConsultaMantenimientos()));
+        itemGraficos.addActionListener(e -> controlador.cargarPanel(new Graficos()));
     }
 }
