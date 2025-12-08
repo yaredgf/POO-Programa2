@@ -1,4 +1,6 @@
 # Changelog
+## v0.3.0.1
+    * Se agregó la dependencia Maven de JFreeChart
 ## v0.3.0
     * Módulo de Fases implementado
     * Se agregó el "Acerca de"
